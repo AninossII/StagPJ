@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-03-29T12:46:28.852Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.57" etag="vjan8ryn4X-0kr_nPju3" version="14.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-29T13:13:19.612Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.57" etag="qbQwdsTlMvnfH3jEdQDW" version="14.5.3" type="github">
   <diagram id="thO92VyvDMDzt5ZOfylT" name="Page-1">
-    <mxGraphModel dx="1367" dy="687" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1021" dy="698" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -46,10 +46,10 @@
         <mxCell id="qN_4cqXuDf2b30JJtQDB-6" value="ID:String&lt;br&gt;Email:String&lt;br&gt;Password:String&lt;br&gt;Nom:String&lt;br&gt;Prenom:String&lt;br&gt;Datenes:DateTime&lt;br&gt;Dateins:DateTime&lt;br&gt;&lt;div&gt;&lt;font color=&quot;#050505&quot;&gt;Genre:Bool&lt;/font&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qN_4cqXuDf2b30JJtQDB-5" vertex="1">
           <mxGeometry y="29" width="140" height="131" as="geometry" />
         </mxCell>
-        <mxCell id="qN_4cqXuDf2b30JJtQDB-8" value="Comptes" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+        <mxCell id="qN_4cqXuDf2b30JJtQDB-8" value="Compte" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
           <mxGeometry x="550" y="140" width="140" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="qN_4cqXuDf2b30JJtQDB-9" value="ID:String&lt;br&gt;Nom:String&lt;br&gt;C_Montant:float&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qN_4cqXuDf2b30JJtQDB-8" vertex="1">
+        <mxCell id="qN_4cqXuDf2b30JJtQDB-9" value="ID:String&lt;br&gt;Nom:String&lt;br&gt;Datecreation:DateTime&lt;br&gt;C_Montant:float" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qN_4cqXuDf2b30JJtQDB-8" vertex="1">
           <mxGeometry y="29" width="140" height="81" as="geometry" />
         </mxCell>
         <mxCell id="qN_4cqXuDf2b30JJtQDB-10" value="-Update();&lt;br&gt;-Ajouter();&lt;br&gt;-Modifiere();&lt;br&gt;-Suppretion();" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qN_4cqXuDf2b30JJtQDB-8" vertex="1">
@@ -310,7 +310,7 @@
         <mxCell id="pNo498uJLmKVRCDDvadz-20" value="-Ajouter();&lt;br&gt;-Modifier();&lt;br&gt;Suppretion();" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="pNo498uJLmKVRCDDvadz-11">
           <mxGeometry y="80" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="pNo498uJLmKVRCDDvadz-17" value="Sours" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+        <mxCell id="pNo498uJLmKVRCDDvadz-17" value="Sour" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="700" y="490" width="140" height="140" as="geometry" />
         </mxCell>
         <mxCell id="pNo498uJLmKVRCDDvadz-18" value="ID:String&lt;br&gt;Designation:String" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="pNo498uJLmKVRCDDvadz-17">
@@ -349,7 +349,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="pNo498uJLmKVRCDDvadz-32" value="Connectiona" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+        <mxCell id="pNo498uJLmKVRCDDvadz-32" value="Connection" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="16" y="80" width="140" height="100" as="geometry" />
         </mxCell>
         <mxCell id="pNo498uJLmKVRCDDvadz-33" value="connection:String" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="pNo498uJLmKVRCDDvadz-32">
