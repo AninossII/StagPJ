@@ -22,9 +22,9 @@ you can try the website from here:
     
 # This project using:
   -C#</br>
-  -HTML&CSS-BootstRap
-  -JavaScript & Node.js
-  -Asp.net 
+  -HTML&CSS-BootstRap</br>
+  -JavaScript & Node.js</br>
+  -Asp.net </br>
  
  # What did we learn from this project?
   -I don't know yet
