@@ -16,7 +16,8 @@ namespace StagPj
         public DataTable dataTable = new DataTable();
         public Connexion()
         {
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+            //con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+            con.ConnectionString = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
         }
         public DataTable retrievdata(string command)
         {
