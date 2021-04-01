@@ -27,7 +27,6 @@ namespace StagPj
         public string Id
         {
             get { return id; }
-
         }
         public string Nom
         {

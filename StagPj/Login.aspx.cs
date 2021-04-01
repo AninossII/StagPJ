@@ -20,17 +20,19 @@ namespace StagPj
         {
             SqlConnection con = new SqlConnection("Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234");
             
-            SqlCommand cmd = new SqlCommand("exec dbo.U_Login", con);
+            SqlCommand cmd = new SqlCommand("dbo.User_Login", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
             cmd.Parameters.Add("@Password", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
             cmd.Parameters["@Email"].Value = TextBox1.Text;
             cmd.Parameters["@Password"].Value = TextBox2.Text;
             con.Open();
             cmd.ExecuteNonQuery();
 
-             Response.Write(cmd.Parameters.Add("@responseMessage ", SqlDbType.Char, 256).ToString());
+             Response.Write(cmd.Parameters["@responseMessage"].Value);
             
 
             con.Close();
