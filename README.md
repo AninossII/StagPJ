@@ -31,7 +31,7 @@ you can try the website from here:
   -I don't know yet
   
  # Special Thanks
- Special Thanks to me and Mr Ayoub for the great work in this Project.
+ Special Thanks to me, Hamza and Ayoub for the great work in this Project.
  and the others.
  
  
