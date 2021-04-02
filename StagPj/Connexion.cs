@@ -12,13 +12,25 @@ namespace StagPj
 {
     public class Connexion
     {
-        SqlConnection con = new SqlConnection();
+        static SqlConnection con; 
         public DataTable dataTable = new DataTable();
+        private string Sqlstring;
+
+        public static SqlConnection Con
+        {
+            get
+            {                
+                return con;
+            }
+        }
+
         public Connexion()
         {
-            //con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
-            con.ConnectionString = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
+            Sqlstring = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
+            con = new SqlConnection(Sqlstring);
+            //con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;            
         }
+
         public DataTable retrievdata(string command)
         {
             try
