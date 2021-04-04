@@ -1,0 +1,106 @@
+[33mcommit 8eac1590072018f56f10d5097b3e6ebdda962be1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 1469bff 9061414
+Author: AninossII <aninosspro@gmail.com>
+Date:   Sun Apr 4 22:03:33 2021 +0100
+
+    create New Event page , Update Home page [Spont events] and update Action class [Ajout Meth]
+
+[33mcommit 1469bfff1b6108f8ac1ea9a1d0122f6c974317ec[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: AninossII <aninosspro@gmail.com>
+Date:   Sun Apr 4 21:57:21 2021 +0000
+
+    Making the New Enevent page, Update Home page [Spont Evnet's] and Update the Action class [Ajout Method]
+
+[33mcommit 9061414620ea800527ecd95c1a81f98b8b680bbd[m
+Author: AyoubSmina <01.saayoub@gmail.com>
+Date:   Sat Apr 3 12:33:53 2021 +0100
+
+    modifier page Login
+
+[33mcommit 8f828c095dcbb5145057d3e423082f2abcb7facc[m
+Author: AyoubSmina <01.saayoub@gmail.com>
+Date:   Sat Apr 3 12:06:32 2021 +0100
+
+    Creation page Profile and create file Sources in project
+
+[33mcommit 34d31a769ff746f01627ce99c0e98cce24d83566[m[33m ([m[1;31morigin/default[m[33m)[m
+Merge: 7391968 eee5a72
+Author: AninossII <aninosspro@gmail.com>
+Date:   Fri Apr 2 23:17:20 2021 +0100
+
+    Updating Login Fix all the problems
+
+[33mcommit 7391968b822fd4864bcfd44f5d7a4723612e13bb[m
+Author: AninossII <aninosspro@gmail.com>
+Date:   Fri Apr 2 22:08:50 2021 +0100
+
+    Edit Login
+
+[33mcommit eee5a722e5acf246df0fb7f5506d755b4e179e18[m
+Author: AyoubSmina <01.saayoub@gmail.com>
+Date:   Thu Apr 1 21:52:45 2021 +0200
+
+    In Login
+    
+    How we can Execute Procedure
+
+[33mcommit 19588defb583be6c057879e82b931c608cc667f4[m
+Merge: b7aa4b2 64049ee
+Author: AninossII <aninosspro@gmail.com>
+Date:   Thu Apr 1 00:03:13 2021 +0100
+
+    Merge branch 'master' of https://github.com/AninossII/StagPJ
+
+[33mcommit b7aa4b23d82d2617ebd15f8ec737e98d636bde57[m
+Author: AninossII <aninosspro@gmail.com>
+Date:   Thu Apr 1 00:01:34 2021 +0100
+
+    add the Login form
+
+[33mcommit 64049eedd9654c4ef0af54be883d497dc89a5b3e[m
+Author: AninossII <57045844+AninossII@users.noreply.github.com>
+Date:   Wed Mar 31 19:21:54 2021 +0000
+
+    StagPJ Diagram.drawio
+
+[33mcommit 3ddb62935b536a6d417fc18a3e305fb777bc859c[m
+Author: AninossII <57045844+AninossII@users.noreply.github.com>
+Date:   Wed Mar 31 20:19:35 2021 +0100
+
+    Update README.md
+
+[33mcommit 85d3d4cd55f4e5cd5bbb7b72340b1094c1178f9c[m
+Author: AninossII <57045844+AninossII@users.noreply.github.com>
+Date:   Wed Mar 31 20:19:12 2021 +0100
+
+    Update README.md
+
+[33mcommit 56a7273cd1b431cabb4788b24144726ac5b39023[m
+Author: AninossII <57045844+AninossII@users.noreply.github.com>
+Date:   Wed Mar 31 19:49:13 2021 +0100
+
+    Create Licenses
+
+[33mcommit c0ffb0cd29355bba879a0439a9e35618d8f72d4c[m
+Author: AninossII <57045844+AninossII@users.noreply.github.com>
+Date:   Wed Mar 31 19:44:01 2021 +0100
+
+    Add Licensing to the Readme
+
+[33mcommit c1124a3b2df17c90719ee5200bd2c9d819c6ccf5[m
+Author: AninossII <aninosspro@gmail.com>
+Date:   Wed Mar 31 19:21:26 2021 +0100
+
+    add all the Classes
+
+[33mcommit 9a4a057d831500a225833470152d8fefe08f6b05[m
+Author: AninossII <57045844+AninossII@users.noreply.github.com>
+Date:   Wed Mar 31 15:55:41 2021 +0100
+
+    Create README.md
+
+[33mcommit 141e27c941a1d3477146af3051b00c571e7cb594[m
+Author: AninossII <aninosspro@gmail.com>
+Date:   Wed Mar 31 15:37:48 2021 +0100
+
+    Create the Project Tamplet
