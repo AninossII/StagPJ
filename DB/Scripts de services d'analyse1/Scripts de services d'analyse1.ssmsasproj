@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlAsProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Scripts de services d'analyse1">
+  <Items>
+    <LogicalFolder Name="Connexions" Type="2" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Requêtes" Type="1" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Divers" Type="3" Sorted="true">
+      <Items>
+        <FileNode Name="Ceation table.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Ceation table.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Proc Action.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Proc Action.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Proc categorie.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Proc categorie.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Proc Comptes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Proc Comptes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Proc Sours.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Proc Sours.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Proc Utilisateur.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Proc Utilisateur.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQL test.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQL test.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Sql_Triggers.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Sql_Triggers.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlAsProject>
