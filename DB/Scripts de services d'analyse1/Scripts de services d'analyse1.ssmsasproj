@@ -5,7 +5,14 @@
       <Items />
     </LogicalFolder>
     <LogicalFolder Name="Requêtes" Type="1" Sorted="true">
-      <Items />
+      <Items>
+        <FileNode Name="MDXQuery1.mdx">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>MDXQuery1.mdx</FullPath>
+        </FileNode>
+      </Items>
     </LogicalFolder>
     <LogicalFolder Name="Divers" Type="3" Sorted="true">
       <Items>
@@ -56,6 +63,12 @@
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
           <FullPath>Sql_Triggers.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Views.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Views.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

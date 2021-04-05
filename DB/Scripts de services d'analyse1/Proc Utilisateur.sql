@@ -131,22 +131,56 @@ begin
 return (select count(*) from Comptes where U_id = @ID)
 end
 -----------------------------------------
-print dbo.Count_Compte('CDFA2082-41C6-42D2-B82E-68D0643799D4')
+print dbo.Count_Compte('D7232F9B-22E1-44B1-9019-BF2CFBB4D497')
 ------------------------------------------
+--to get total Mantant 
+create or alter Function Get_Total_Mantant(@ID uniqueidentifier)
+returns float
+begin
+return (select SUM(C_Montant) from Comptes where U_id = @ID)
+end
+---------------------------------------------
+print dbo.Get_Total_Mantant('D7232F9B-22E1-44B1-9019-BF2CFBB4D497')
+--------------------------------------
+--to get last_Time_Action 
+create or alter Function last_Time_Action(@ID uniqueidentifier)
+returns time
+begin
+return (select top(1) [time] =cast(A.[Time] as time(0)) from 
+Comptes C inner join Action A on A.C_id = C.ID where C.U_id = @ID order by A.[Time] desc)
+end
+-----------------------------------
+select dbo.last_Time_Action('65198CBF-DF87-4BDF-ACBA-3BC2FEBB415C')
+select * From Action
+select * From Comptes
+---------------------------------------------------------------------
+--to get profil information 
+---------------------------
+create or alter proc Get_Info_Profile @ID uniqueidentifier as 
+select top(1)
+[Nom et prenom] = concat(trim(U.Prenom),' ',TRIM(U.Nom)),
+U.Dateins,
+[coutCompte]= dbo.Count_Compte(@ID),
+[Last_Tran] = dbo.last_Time_Action(@ID),
+[Mantant] = dbo.Get_Total_Mantant(@ID)
+from Utilisateur as U
+where U.ID = @ID 
+--------------------------------------------------------
+exec dbo.Get_Info_Profile '65198CBF-DF87-4BDF-ACBA-3BC2FEBB415C'
+----------------------------------------
+-- Email To ID
+create or alter Function Get_ID_Utilisateur(@Email char(150))
+returns uniqueidentifier 
+begin 
+	return (select ID from Utilisateur where Email = TRIM(@Email))
+end
+select * from Utilisateur
+                                                                                                                                        
+
+select dbo.Get_ID_Utilisateur('hello@world.co')
 
 
-create or alter View Get_Info_Profile as 
 
 
-select top(1) U.Prenom,U.Nom,U.Dateins,
-[coutCompte] = count(U.ID) over(partition by C.U_id),
-[Time] = A.[Time],
-Price = SUM(C.C_Montant) over (partition by U.ID)
-from Utilisateur as U 
-inner join Comptes as C on C.U_id = U.ID
- join [Action] as A on A.U_id = U.ID
-where U.ID = '65198CBF-DF87-4BDF-ACBA-3BC2FEBB415C'
-order by A.Time desc
 
 
-INSERT INTO Action(Designation,U_id,Prix,[Time]) values ('Descraption','CDFA2082-41C6-42D2-B82E-68D0643799D4',50,'2015-12-12 05:10:00')

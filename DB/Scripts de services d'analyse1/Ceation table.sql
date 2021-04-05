@@ -33,4 +33,8 @@ create table Categorie(ID int identity constraint PK_Categorie primary key,
 					A_id uniqueidentifier 
 					constraint FK_Action_Categorie foreign key (A_id) references [Action](ID))
 
+----------------------------------------------------------------
+
+
+
 
