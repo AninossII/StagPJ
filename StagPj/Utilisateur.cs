@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace StagPj
 {
@@ -68,6 +70,36 @@ namespace StagPj
         {
             get { return genre; }
             set { genre = value; }
+        }
+        public string SingUp(string Email, string Password, string Nom, string Prenom, DateTime Datenes,  char Genres)
+        {
+            new Connexion();
+            Connexion.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.I_Utilisateur", Connexion.Con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
+            cmd.Parameters.Add("@Password", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@Prenom", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@Datenes", SqlDbType.Date);
+            cmd.Parameters.Add("@Dateins", SqlDbType.DateTime);
+            cmd.Parameters.Add("@Genre", SqlDbType.Char);
+
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters["@Email"].Value = Email;
+            cmd.Parameters["@Password"].Value = Password;
+            cmd.Parameters["@Nom"].Value = Nom;
+            cmd.Parameters["@Prenom"].Value = Prenom;
+            cmd.Parameters["@Datenes"].Value = Datenes;
+            cmd.Parameters["@Dateins"].Value = DateTime.Now;
+            cmd.Parameters["@Genre"].Value = Genre;
+            cmd.ExecuteNonQuery();
+
+            Connexion.Con.Close();
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
         }
     }
 }
