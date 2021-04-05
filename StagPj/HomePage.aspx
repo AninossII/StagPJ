@@ -23,14 +23,20 @@
         <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
             <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
         
-        <div class="Event">
+        
             <asp:Label ID="timeText" runat="server" Text="Label"></asp:Label>
-        </div>
+        
         
         <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" Width="125px">
         </asp:DetailsView>
         
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <p>
+            <asp:Button ID="btnMod" runat="server" Text="Modefier" OnClick="btnMod_Click" />
+        </p>
+        <p>
+        
+        <asp:Button ID="tbnNewevent" runat="server" Text="Button" OnClick="Button1_Click" />
+        </p>
     </form>
 </body>
 </html>

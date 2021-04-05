@@ -22,7 +22,11 @@ namespace StagPj
         protected void Button1_Click(object sender, EventArgs e)
         {
             Action A = new Action();
-            Response.Write(A.Ajouter_Action(TextBox1.Text, TextBox2.Text));
+
+            A.Montant = float.Parse(TextBox1.Text);
+            A.Des = TextBox2.Text;
+            
+            Response.Write(A.Ajouter_Action());
             
             Response.Redirect("HomePage.aspx");
         }

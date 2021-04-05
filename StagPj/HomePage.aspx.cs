@@ -11,6 +11,7 @@ namespace StagPj
 {
     public partial class HomePage : System.Web.UI.Page
     {
+        public static string ModifId;
         private string Tname;
 
         void SponeNewEvent(string lbName, string cont, string htmlString,string monSfx)
@@ -18,12 +19,12 @@ namespace StagPj
             this.Tname = lbName;
 
             var Tname = new Label();
-
             Tname.Text = cont + monSfx;
 
             timeText.Visible = true;
             timeText.Controls.Add(Tname);
-            timeText.Controls.Add(new LiteralControl(htmlString));
+            timeText.Controls.Add(new LiteralControl(htmlString));          
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -47,6 +48,7 @@ namespace StagPj
             
             while (rd.Read())
             {
+                timeText.Controls.Add(new LiteralControl("<div class=" + "Event" + ">"));
                 string _time;
                 SponeNewEvent("prixLabel", rd["Prix"].ToString(), " "," DH");
 
@@ -58,37 +60,31 @@ namespace StagPj
                 foreach(char c in _time)
                 {
                     if(c == ':')
-                    {
-                        k += 1;
-                    }                    
+                        k += 1;                                      
 
                     i++;
 
                     if (k == 2)
-                    {
-                        break;
-                    }
+                        break;                    
                 }                
                                                   
                 SponeNewEvent("timeLabel", _time.Substring(0, (i - 1)), "</br>", "");
                 SponeNewEvent("desLabel", rd["Designation"].ToString(), "</br></br>", "");
                 
-                /*
-                Label timeLabel = new Label();
-                timeLabel.Text = (rd[1].ToString().Split(' '))[1].Substring(0, 4);
+                var modButton = new Button();
+                modButton.Text = "Modifier";
+                string _id = rd[0].ToString();;
+                modButton.Click += (s, ef) =>
+                {
+                    ModifId = _id;
+                    Response.Write(ModifId);
+                    Response.Redirect("NewEventPage.aspx");
+                };
                 timeText.Visible = true;
-                timeText.Controls.Add(timeLabel);
+                timeText.Controls.Add(modButton);
                 timeText.Controls.Add(new LiteralControl(""));
+                timeText.Controls.Add(new LiteralControl("</div>"));
                 
-                Label desLabel = new Label();
-                desLabel.Text = rd[2].ToString();
-                timeText.Controls.Add(desLabel);
-                timeText.Controls.Add(new LiteralControl("</br>"));
-                */
-
-                // timeText.Text = (rd[1].ToString().Split(' '))[1].Substring(0, 4);
-                // desText.Text = rd[2].ToString();
-                // prixText.Text = rd[3].ToString() + "DH";
             }
 
         }
@@ -96,6 +92,11 @@ namespace StagPj
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("NewEventPage.aspx");
+        }
+
+        protected void btnMod_Click(object sender, EventArgs e)
+        {
+            Response.Write("Hello WORLD");
         }
     }
 }
