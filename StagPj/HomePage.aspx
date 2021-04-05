@@ -31,9 +31,6 @@
         </asp:DetailsView>
         
         <p>
-            <asp:Button ID="btnMod" runat="server" Text="Modefier" OnClick="btnMod_Click" />
-        </p>
-        <p>
         
         <asp:Button ID="tbnNewevent" runat="server" Text="Button" OnClick="Button1_Click" />
         </p>

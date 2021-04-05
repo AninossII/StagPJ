@@ -9,7 +9,8 @@ namespace StagPj
 {
     public class Action
     {
-        private string id;
+
+        private static string modifId;
         private DateTime time;
         private float montant;
         private string designation;
@@ -26,6 +27,12 @@ namespace StagPj
         {
             get { return designation; }
             set { designation = value; }
+        }
+
+        public  string ModifID
+        {
+            get { return modifId; }
+            set { modifId = value; }
         }
 
         public Action()

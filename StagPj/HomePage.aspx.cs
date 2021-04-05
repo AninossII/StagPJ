@@ -11,7 +11,7 @@ namespace StagPj
 {
     public partial class HomePage : System.Web.UI.Page
     {
-        public static string ModifId;
+        
         private string Tname;
 
         void SponeNewEvent(string lbName, string cont, string htmlString,string monSfx)
@@ -76,15 +76,14 @@ namespace StagPj
                 string _id = rd[0].ToString();;
                 modButton.Click += (s, ef) =>
                 {
-                    ModifId = _id;
-                    Response.Write(ModifId);
+                    Action A = new Action();
+                    A.ModifID = _id;
                     Response.Redirect("NewEventPage.aspx");
                 };
                 timeText.Visible = true;
                 timeText.Controls.Add(modButton);
                 timeText.Controls.Add(new LiteralControl(""));
                 timeText.Controls.Add(new LiteralControl("</div>"));
-                
             }
 
         }
@@ -92,11 +91,6 @@ namespace StagPj
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("NewEventPage.aspx");
-        }
-
-        protected void btnMod_Click(object sender, EventArgs e)
-        {
-            Response.Write("Hello WORLD");
         }
     }
 }
