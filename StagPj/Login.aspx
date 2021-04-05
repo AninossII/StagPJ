@@ -15,7 +15,7 @@
 
         </div>
         <asp:TextBox ID="TextBox1" runat="server" value="Ayoub@gmail.com"></asp:TextBox>
-        <div><asp:TextBox ID="TextBox2" runat="server">team</asp:TextBox></div>
+        <div><asp:TextBox ID="TextBox2" runat="server" value="team"></asp:TextBox></div>
         
 
         <p>
