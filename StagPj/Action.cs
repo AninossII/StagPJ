@@ -115,16 +115,16 @@ namespace StagPj
         {
             new Connexion();
             Connexion.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.I_Action", Connexion.Con);
+            SqlCommand cmd = new SqlCommand("dbo.D_Action", Connexion.Con);
 
             cmd.CommandType = CommandType.StoredProcedure;
             
-            cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
+            cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
 
             cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
             cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
+            cmd.Parameters["@ID"].Value = Guid.Parse(id);
 
 
             cmd.ExecuteNonQuery();

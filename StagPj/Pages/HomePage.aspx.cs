@@ -97,7 +97,7 @@ namespace StagPj
                     Response.Redirect("HomePage.aspx");
                 };
                 timeText.Visible = true;
-                timeText.Controls.Add(modButton);
+                timeText.Controls.Add(supButton);
 
                 timeText.Controls.Add(new LiteralControl(" "));
                 timeText.Controls.Add(new LiteralControl("</div>"));

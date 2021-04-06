@@ -29,7 +29,7 @@
         
         <p>
         
-        <asp:Button ID="tbnNewevent" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:Button ID="tbnNewevent" runat="server" Text="Add Event" OnClick="Button1_Click" />
         </p>
     </form>
 </body>

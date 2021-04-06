@@ -34,7 +34,7 @@ namespace StagPj
         public string Id
         {
             get { return id; }
-            set { id = value; }
+
 
         }
         public string Email
