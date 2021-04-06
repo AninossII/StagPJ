@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace StagPj
 {
@@ -43,17 +45,79 @@ namespace StagPj
             get { return c_montant; }
             set { c_montant = value; }
         }
-        public void Ajouter_Compte()
+        public string Ajouter_Compte(string Nom, float C_Montant)
         {
+            new Connexion();
+            Connexion.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.I_Comptes", Connexion.Con);
 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@C_Montant", SqlDbType.Float);
+            cmd.Parameters.Add("@U_id", SqlDbType.UniqueIdentifier);
+
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+
+            cmd.Parameters["@Nom"].Value = Nom;
+            cmd.Parameters["@C_Montant"].Value = Convert.ToDouble(C_Montant);
+            cmd.Parameters["@U_id"].Value = Guid.Parse("7F1CB55C-0FDA-4AD7-BA40-9E7E2276B06C");
+
+
+            cmd.ExecuteNonQuery();
+
+            Connexion.Con.Close();
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
         }
-        public void modifiere_Compte()
+        public string modifiere_Compte(string Nom, float C_Montant)
         {
+            new Connexion();
+            Connexion.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.U_Comptes", Connexion.Con);
 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@C_Montant", SqlDbType.Float);
+            cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
+
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+
+            cmd.Parameters["@Nom"].Value = Nom;
+            cmd.Parameters["@C_Montant"].Value = Convert.ToDouble(C_Montant);
+            cmd.Parameters["@C_id"].Value = Guid.Parse("7F1CB55C-0FDA-4AD7-BA40-9E7E2276B06C");
+
+
+            cmd.ExecuteNonQuery();
+
+            Connexion.Con.Close();
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
         }
-        public void suppretion_Compte()
+        public string suppretion_Compte()
         {
+            new Connexion();
+            Connexion.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.D_Comptes", Connexion.Con);
 
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
+
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters["@ID"].Value = Guid.Parse(id);
+
+
+            cmd.ExecuteNonQuery();
+
+            Connexion.Con.Close();
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
         }
     }
 }
