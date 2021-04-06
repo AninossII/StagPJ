@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StagPj
-{
-
-
-    public partial class HomePage
-    {
-
+namespace StagPj {
+    
+    
+    public partial class HomePage {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// Calendar1 control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar Calendar1;
-
+        
         /// <summary>
         /// dayText control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label dayText;
-
+        
         /// <summary>
         /// monthText control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label monthText;
-
+        
         /// <summary>
         /// Label3 control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-
+        
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-
+        
         /// <summary>
         /// timeText control.
         /// </summary>
@@ -76,16 +74,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label timeText;
-
-        /// <summary>
-        /// DetailsView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
-
+        
         /// <summary>
         /// tbnNewevent control.
         /// </summary>

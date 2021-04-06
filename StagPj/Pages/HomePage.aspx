@@ -27,9 +27,6 @@
             <asp:Label ID="timeText" runat="server" Text="Label"></asp:Label>
         
         
-        <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" Width="125px">
-        </asp:DetailsView>
-        
         <p>
         
         <asp:Button ID="tbnNewevent" runat="server" Text="Button" OnClick="Button1_Click" />

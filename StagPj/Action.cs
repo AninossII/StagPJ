@@ -29,7 +29,7 @@ namespace StagPj
             set { designation = value; }
         }
 
-        public  string ModifID
+        public string ModifID
         {
             get { return modifId; }
             set { modifId = value; }
@@ -79,7 +79,7 @@ namespace StagPj
 
         }
 
-        public string modifiere_Action()
+        public string modifiere_Action(string _time, string _cId)
         {
             new Connexion();
             Connexion.Con.Open();
@@ -96,11 +96,11 @@ namespace StagPj
             cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
             cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters["@Time"].Value = DateTime.Now;
+            cmd.Parameters["@Time"].Value = DateTime.Parse(_time);
             cmd.Parameters["@Designation"].Value = designation;
             cmd.Parameters["@Prix"].Value = montant;
             cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
-            cmd.Parameters["@ID"].Value = Guid.Parse("5A9E4306-136A-4998-9B6D-86AA061DD0D1");
+            cmd.Parameters["@ID"].Value = Guid.Parse("2AE55C0F-D56A-4F7D-940F-0CA6EE80345A");
 
 
             cmd.ExecuteNonQuery();

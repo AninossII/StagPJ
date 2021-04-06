@@ -11,12 +11,12 @@ namespace StagPj
 {
     public partial class HomePage : System.Web.UI.Page
     {
-        
-        private string Tname;
+        private Action A;
+        private string _name;
 
         void SponeNewEvent(string lbName, string cont, string htmlString,string monSfx)
         {
-            this.Tname = lbName;
+            this._name = lbName;
 
             var Tname = new Label();
             Tname.Text = cont + monSfx;
@@ -29,6 +29,12 @@ namespace StagPj
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            A = new Action();
+            if (!(A.ModifID == ""))
+            {
+                A.ModifID = "";
+            }
+
             dayText.Text = DateTime.Now.ToString("dd");
             monthText.Text = DateTime.Now.Date.ToString("MMMM");
             Label3.Text = "Today";
@@ -76,7 +82,7 @@ namespace StagPj
                 string _id = rd[0].ToString();;
                 modButton.Click += (s, ef) =>
                 {
-                    Action A = new Action();
+                    A = new Action();
                     A.ModifID = _id;
                     Response.Redirect("NewEventPage.aspx");
                 };

@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StagPj
-{
-
-
-    public partial class NewEventPage
-    {
-
+namespace StagPj {
+    
+    
+    public partial class NewEventPage {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// Button2 control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
-
+        
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -40,25 +38,25 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-
+        
         /// <summary>
-        /// TextBox1 control.
+        /// tbPrix control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-
+        protected global::System.Web.UI.WebControls.TextBox tbPrix;
+        
         /// <summary>
-        /// TextBox2 control.
+        /// tbDes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
-
+        protected global::System.Web.UI.WebControls.TextBox tbDes;
+        
         /// <summary>
         /// DropDownList1 control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-
+        
         /// <summary>
         /// CheckBox1 control.
         /// </summary>
@@ -76,14 +74,14 @@ namespace StagPj
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
-
+        
         /// <summary>
-        /// Button1 control.
+        /// btnEvent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnEvent;
     }
 }

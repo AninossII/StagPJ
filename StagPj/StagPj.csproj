@@ -95,9 +95,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HomePage.aspx" />
-    <Content Include="Login.aspx" />
-    <Content Include="NewEventPage.aspx" />
+    <Content Include="Pages\HomePage.aspx" />
+    <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\NewEventPage.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -111,7 +111,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Register.aspx" />
+    <Content Include="Pages\Register.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Web.config">
@@ -124,41 +124,42 @@
     <Compile Include="Compte.cs" />
     <Compile Include="Connexion.cs" />
     <Compile Include="Home.cs" />
-    <Compile Include="HomePage.aspx.cs">
+    <Compile Include="Pages\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomePage.aspx.designer.cs">
+    <Compile Include="Pages\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="In.cs" />
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewEvent.cs" />
-    <Compile Include="NewEventPage.aspx.cs">
+    <Compile Include="Pages\NewEventPage.aspx.cs">
       <DependentUpon>NewEventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NewEventPage.aspx.designer.cs">
+    <Compile Include="Pages\NewEventPage.aspx.designer.cs">
       <DependentUpon>NewEventPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Out.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.aspx.cs">
+    <Compile Include="Pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Register.aspx.designer.cs">
+    <Compile Include="Pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sour.cs" />
     <Compile Include="Utilisateur.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

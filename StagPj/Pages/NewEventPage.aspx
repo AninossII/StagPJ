@@ -15,10 +15,10 @@
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
 
-        <asp:TextBox ID="TextBox1" runat="server" placeholder="Price..." Width="170px" value="20"></asp:TextBox>
+        <asp:TextBox ID="tbPrix" runat="server" placeholder="Price..." Width="170px"></asp:TextBox>
         
         <p>
-            <asp:TextBox ID="TextBox2" runat="server" Height="85px" TextMode="MultiLine" placeholder="Note..." Width="170px" >Sandwich</asp:TextBox>
+            <asp:TextBox ID="tbDes" runat="server" Height="85px" TextMode="MultiLine" placeholder="Note..." Width="170px" ></asp:TextBox>
         </p>
         
         <asp:DropDownList ID="DropDownList1" runat="server" Height="41px" Width="171px">
@@ -29,7 +29,7 @@
             <asp:CheckBox ID="CheckBox1" runat="server" Text="Ajoute "/>
         </p>
 
-        <asp:Button ID="Button1" runat="server" Text="Create Event" OnClick="Button1_Click" />
+        <asp:Button ID="btnEvent" runat="server" Text="Create Event" OnClick="Button1_Click" />
     </form>
 </body>
 </html>
