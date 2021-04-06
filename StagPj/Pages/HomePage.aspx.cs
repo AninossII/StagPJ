@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
+ using System.Drawing;
+ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -30,11 +31,7 @@ namespace StagPj
         protected void Page_Load(object sender, EventArgs e)
         {
             A = new Action();
-            if (!(A.ModifID == ""))
-            {
-                A.ModifID = "";
-            }
-
+            
             dayText.Text = DateTime.Now.ToString("dd");
             monthText.Text = DateTime.Now.Date.ToString("MMMM");
             Label3.Text = "Today";
@@ -79,7 +76,7 @@ namespace StagPj
                 
                 var modButton = new Button();
                 modButton.Text = "Modifier";
-                string _id = rd[0].ToString();;
+                string _id = rd[0].ToString();
                 modButton.Click += (s, ef) =>
                 {
                     A = new Action();
@@ -88,7 +85,21 @@ namespace StagPj
                 };
                 timeText.Visible = true;
                 timeText.Controls.Add(modButton);
-                timeText.Controls.Add(new LiteralControl(""));
+                timeText.Controls.Add(new LiteralControl(" "));
+
+                var supButton = new Button();
+                supButton.Text = "X";
+                supButton.BackColor = Color.Red;
+                supButton.Click += (s, ef) =>
+                {
+                    A = new Action();
+                    A.Suppretion_Action(_id);
+                    Response.Redirect("HomePage.aspx");
+                };
+                timeText.Visible = true;
+                timeText.Controls.Add(modButton);
+
+                timeText.Controls.Add(new LiteralControl(" "));
                 timeText.Controls.Add(new LiteralControl("</div>"));
             }
 

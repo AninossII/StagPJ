@@ -57,7 +57,7 @@ namespace StagPj
 
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@Time", SqlDbType.Char, 150);
+            cmd.Parameters.Add("@Time", SqlDbType.DateTime);
             cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
             cmd.Parameters.Add("@Prix", SqlDbType.Float);
             cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
@@ -79,7 +79,7 @@ namespace StagPj
 
         }
 
-        public string modifiere_Action(string _time, string _cId)
+        public string Modifiere_Action()
         {
             new Connexion();
             Connexion.Con.Open();
@@ -88,7 +88,7 @@ namespace StagPj
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
-            cmd.Parameters.Add("@Time", SqlDbType.Char, 150);
+            cmd.Parameters.Add("@Time", SqlDbType.DateTime);
             cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
             cmd.Parameters.Add("@Prix", SqlDbType.Float);
             cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
@@ -96,11 +96,35 @@ namespace StagPj
             cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
             cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters["@Time"].Value = DateTime.Parse(_time);
+            cmd.Parameters["@ID"].Value = Guid.Parse(modifId.ToUpper());
+            cmd.Parameters["@Time"].Value = DateTime.Now;
             cmd.Parameters["@Designation"].Value = designation;
             cmd.Parameters["@Prix"].Value = montant;
             cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
-            cmd.Parameters["@ID"].Value = Guid.Parse("2AE55C0F-D56A-4F7D-940F-0CA6EE80345A");
+            
+            cmd.ExecuteNonQuery();
+
+            Connexion.Con.Close();
+
+            modifId = "";
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
+
+        }
+        public string Suppretion_Action(string id)
+        {
+            new Connexion();
+            Connexion.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.I_Action", Connexion.Con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            
+            cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
+
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
 
 
             cmd.ExecuteNonQuery();
@@ -108,35 +132,7 @@ namespace StagPj
             Connexion.Con.Close();
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
-        }
-        public string suppretion_Action()
-        {
-            //new Connexion();
-            //Connexion.Con.Open();
-            //SqlCommand cmd = new SqlCommand("dbo.I_Action", Connexion.Con);
-
-            //cmd.CommandType = CommandType.StoredProcedure;
-
-            //cmd.Parameters.Add("@Time", SqlDbType.Char, 150);
-            //cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
-            //cmd.Parameters.Add("@Prix", SqlDbType.Float);
-            //cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
-
-            //cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
-            //cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
-
-            //cmd.Parameters["@Time"].Value = DateTime.Now;
-            //cmd.Parameters["@Designation"].Value = Designation;
-            //cmd.Parameters["@Prix"].Value = float.Parse(Prix);
-            //cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
-
-
-            //cmd.ExecuteNonQuery();
-
-            //Connexion.Con.Close();
-
-            //return cmd.Parameters["@responseMessage"].Value.ToString();
-            return "";
+            
         }
     }
 }

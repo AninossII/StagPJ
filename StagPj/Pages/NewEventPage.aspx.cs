@@ -12,19 +12,19 @@ namespace StagPj
     public partial class NewEventPage : System.Web.UI.Page
     {
         Action A;
-        private Boolean _modState = false;
         private DataTable _dataTable;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            A = new Action();
             new Connexion();
-            if (!(A.ModifID == ""))
+            A = new Action();
+
+            if (A.ModifID != "" && tbPrix.Text == "")
             {
                 Connexion.Con.Open();
 
                 System.Data.SqlClient.SqlCommand cmd = new SqlCommand("select * from dbo.action" +
-                                                                      " where ID = '"+ A.ModifID + "'",
+                                                                      " where ID = '"+ A.ModifID +"'",
                     Connexion.Con);
 
                 cmd.ExecuteNonQuery();
@@ -39,8 +39,6 @@ namespace StagPj
                 tbDes.Text = _dataTable.Rows[0][2].ToString();
 
                 btnEvent.Text = "Modifier Event";
-
-                _modState = true;
             }
         }
 
@@ -53,12 +51,12 @@ namespace StagPj
         {
             A = new Action();
 
-            if (_modState == false)
+            if (A.ModifID == "")
             {
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
 
-                Response.Write(A.Ajouter_Action());
+                A.Ajouter_Action();
                 Response.Redirect("HomePage.aspx");
             }
             else
@@ -66,25 +64,9 @@ namespace StagPj
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
 
-                string _time;
+                Response.Write(A.ModifID);
 
-                _time = _dataTable.Rows[0][1].ToString().Split(' ')[1];
-
-                int i = 0;
-                int k = 0;
-
-                foreach (char c in _time)
-                {
-                    if (c == ':')
-                        k += 1;
-
-                    i++;
-
-                    if (k == 2)
-                        break;
-                }
-
-                Response.Write(A.modifiere_Action(_time.Substring(0, (i - 1)), _dataTable.Rows[0][4].ToString()));
+                A.Modifiere_Action();
                 Response.Redirect("HomePage.aspx");
             }
         }

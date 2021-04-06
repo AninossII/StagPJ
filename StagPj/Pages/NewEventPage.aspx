@@ -15,7 +15,7 @@
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
 
-        <asp:TextBox ID="tbPrix" type="number" runat="server" placeholder="Price..." Width="170px"></asp:TextBox>
+        <asp:TextBox ID="tbPrix" runat="server" placeholder="Price..." Width="170px"></asp:TextBox>
         
         <p>
             <asp:TextBox ID="tbDes" runat="server" Height="85px" TextMode="MultiLine" placeholder="Note..." Width="170px" ></asp:TextBox>
