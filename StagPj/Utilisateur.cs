@@ -101,5 +101,26 @@ namespace StagPj
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
         }
+
+        public string LogIn()
+        {
+            new Connexion();
+            Connexion.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.User_Login", Connexion.Con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
+            cmd.Parameters.Add("@password", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters["@Email"].Value = email;
+            cmd.Parameters["@password"].Value = password;
+
+            cmd.ExecuteNonQuery();
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
+        }
     }
 }

@@ -1,0 +1,29 @@
+﻿body form {
+    text-align: center;
+}
+body{
+    background-color:orangered;
+}
+.image-ptofil {
+}
+
+.last_Transaction {
+    align-items: center;
+}
+
+.transaction {
+    
+}
+
+.auto-style2 {
+    text-align: left;
+}
+
+.bar_bas {
+    list-style: none;
+    margin-left: 0px;
+}
+.op_item{
+    display:inline;
+    margin: 1% 3%;
+}
