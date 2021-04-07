@@ -13,28 +13,18 @@ namespace StagPj
     {
         Action A;
         private DataTable _dataTable;
+        private Connexion con;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            new Connexion();
             A = new Action();
-
-            if (A.ModifID != "" && tbPrix.Text == "")
+            if (A.ID != null)
             {
-                Connexion.Con.Open();
-
-                System.Data.SqlClient.SqlCommand cmd = new SqlCommand("select * from dbo.action" +
-                                                                      " where ID = '"+ A.ModifID +"'",
-                    Connexion.Con);
-
-                cmd.ExecuteNonQuery();
-
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-
+                con = new Connexion();
+                A = new Action();
                 _dataTable = new DataTable();
-
-                dataAdapter.Fill(_dataTable);
-
+                _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+                
                 tbPrix.Text = _dataTable.Rows[0][3].ToString();
                 tbDes.Text = _dataTable.Rows[0][2].ToString();
 
@@ -51,7 +41,7 @@ namespace StagPj
         {
             A = new Action();
 
-            if (A.ModifID == "")
+            if (A.ID == null)
             {
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
@@ -64,7 +54,7 @@ namespace StagPj
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
 
-                Response.Write(A.ModifID);
+                Response.Write(A.ID);
 
                 A.Modifiere_Action();
                 Response.Redirect("HomePage.aspx");
