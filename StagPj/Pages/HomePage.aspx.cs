@@ -14,18 +14,23 @@ namespace StagPj
     public partial class HomePage : System.Web.UI.Page
     {
         private Action A = new Action();
+        private Utilisateur U;
         private string _name;
         private Connexion con;
         private static string _selectDay;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            U = new Utilisateur();
+
             dayText.Text = DateTime.Now.ToString("dd");
             monthText.Text = DateTime.Now.Date.ToString("MMMM");
             Label3.Text = "Today";
             Label4.Text = "1" + "Event";
 
             timeText.Visible = false;
+
+            Response.Write(U.ID);
 
             System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml("#FFC953");
             calDay.DayHeaderStyle.BackColor = Color.White;
@@ -126,11 +131,7 @@ namespace StagPj
                     timeText.Controls.Add(new LiteralControl(" "));
                     timeText.Controls.Add(new LiteralControl("</div>"));
                 }
-                else
-                {
-                    Response.Write("there is no data for that day");
-                }
-
+                
             }
         }
 

@@ -12,11 +12,17 @@ namespace StagPj
 {
     public class Connexion
     {
-        static string Sqlstring = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
+        private static string Sqlstring = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
+        private static string _userId;
+
         static SqlConnection con = new SqlConnection(Sqlstring);
-        private DataTable _dataTable ;
+        private SqlCommand _cmd;
         private SqlDataAdapter _dataAdapter;
+        private DataTable _dataTable ;
+
         private Action A;
+        private Compte C;
+        private Utilisateur U;
 
         public static SqlConnection Con
         {
@@ -36,12 +42,12 @@ namespace StagPj
         public DataTable showDataTable(string Sqlcommand)
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand(Sqlcommand, con);
+            SqlCommand _cmd = new SqlCommand(Sqlcommand, con);
 
             _dataTable = new DataTable();
-            cmd.ExecuteNonQuery();
+            _cmd.ExecuteNonQuery();
 
-            _dataAdapter = new SqlDataAdapter(cmd);
+            _dataAdapter = new SqlDataAdapter(_cmd);
             _dataAdapter.Fill(_dataTable);
 
             con.Close();
@@ -50,7 +56,7 @@ namespace StagPj
 
         }
 
-        public DataTable ExecDataTable(string cmd)
+        public DataTable ExecDataTable(string _cmd)
         {
             try
             {
@@ -76,34 +82,50 @@ namespace StagPj
             return _dataTable;
         }
 
+        ////////////// ----- User ID ----- //////////////
+
+        public string UserId()
+        {
+            U = new Utilisateur();
+
+            con.Open();
+
+            _cmd = new SqlCommand("select dbo.Get_ID_Utilisateur('" + U.Email + "')", con);
+            
+            var idExecuteScalar = _cmd.ExecuteScalar();
+
+            con.Close();
+
+            return idExecuteScalar.ToString();
+        }
+
         ////////////// ----- Action ----- //////////////
 
         public string Ajouter_Action(string des, float prix)
         {
-            
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("dbo.I_Action", con);
-            cmd.CommandType = CommandType.StoredProcedure;
+            _cmd = new SqlCommand("dbo.I_Action", con);
+            _cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@Time", SqlDbType.DateTime);
-            cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
-            cmd.Parameters.Add("@Prix", SqlDbType.Float);
-            cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@Time", SqlDbType.DateTime);
+            _cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
+            _cmd.Parameters.Add("@Prix", SqlDbType.Float);
+            _cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
 
-            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
-            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+            _cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters["@Time"].Value = DateTime.Now;
-            cmd.Parameters["@Designation"].Value = des;
-            cmd.Parameters["@Prix"].Value = prix;
-            cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
+            _cmd.Parameters["@Time"].Value = DateTime.Now;
+            _cmd.Parameters["@Designation"].Value = des;
+            _cmd.Parameters["@Prix"].Value = prix;
+            _cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
              
-            cmd.ExecuteNonQuery();
+            _cmd.ExecuteNonQuery();
 
             con.Close();
 
-            return cmd.Parameters["@responseMessage"].Value.ToString();
+            return _cmd.Parameters["@responseMessage"].Value.ToString();
         }
 
         public string Modifiere_Action(string des,float prix)
@@ -111,32 +133,32 @@ namespace StagPj
             A = new Action();
 
             con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.U_Action", con);
+            _cmd = new SqlCommand("dbo.U_Action", con);
 
-            cmd.CommandType = CommandType.StoredProcedure;
+            _cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
-            cmd.Parameters.Add("@Time", SqlDbType.DateTime);
-            cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
-            cmd.Parameters.Add("@Prix", SqlDbType.Float);
-            cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@Time", SqlDbType.DateTime);
+            _cmd.Parameters.Add("@Designation", SqlDbType.Char, 256);
+            _cmd.Parameters.Add("@Prix", SqlDbType.Float);
+            _cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
 
-            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
-            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+            _cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters["@ID"].Value = Guid.Parse(A.ID);
-            cmd.Parameters["@Time"].Value = DateTime.Now;
-            cmd.Parameters["@Designation"].Value = des;
-            cmd.Parameters["@Prix"].Value = prix;
-            cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
+            _cmd.Parameters["@ID"].Value = Guid.Parse(A.ID);
+            _cmd.Parameters["@Time"].Value = DateTime.Now;
+            _cmd.Parameters["@Designation"].Value = des;
+            _cmd.Parameters["@Prix"].Value = prix;
+            _cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
 
-            cmd.ExecuteNonQuery();
+            _cmd.ExecuteNonQuery();
 
             con.Close();
 
             A.ID = null;
 
-            return cmd.Parameters["@responseMessage"].Value.ToString();
+            return _cmd.Parameters["@responseMessage"].Value.ToString();
 
         }
 
@@ -145,28 +167,53 @@ namespace StagPj
             A = new Action();
 
             con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.D_Action", con);
+            _cmd = new SqlCommand("dbo.D_Action", con);
 
-            cmd.CommandType = CommandType.StoredProcedure;
+            _cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
 
-            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
-            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+            _cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters["@ID"].Value = Guid.Parse(A.ID);
+            _cmd.Parameters["@ID"].Value = Guid.Parse(A.ID);
 
 
-            cmd.ExecuteNonQuery();
+            _cmd.ExecuteNonQuery();
 
             con.Close();
 
             A.ID = null;
 
-            return cmd.Parameters["@responseMessage"].Value.ToString();
+            return _cmd.Parameters["@responseMessage"].Value.ToString();
 
         }
 
         ////////////// ----- User ----- //////////////
+
+        public string LogIn(string email, string password)
+        {
+            U = new Utilisateur();
+
+            con.Open();
+
+            _cmd = new SqlCommand("dbo.User_Login", con);
+
+            _cmd.CommandType = CommandType.StoredProcedure;
+
+            _cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
+            _cmd.Parameters.Add("@password", SqlDbType.Char, 20);
+            _cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            _cmd.Parameters["@Email"].Value = email;
+            _cmd.Parameters["@password"].Value = password;
+
+            _cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            return _cmd.Parameters["@responseMessage"].Value.ToString();
+        }
     }
 }

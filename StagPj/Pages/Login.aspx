@@ -23,16 +23,16 @@
                 </center>
                 <ul class="Litm_page">
                     <li>
-                        <asp:TextBox ID="tbEmail" runat="server" value="Ayoub@gmail.com"></asp:TextBox>
+                        <asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
                     </li>
                     <li>
-                        <asp:TextBox ID="tbPass" runat="server">team</asp:TextBox>
+                        <asp:TextBox ID="tbPass" runat="server"></asp:TextBox>
                     </li>
                     <li>
                         <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click"/>
                     </li>
                     <li>
-                        <asp:CheckBox ID="CheckBox1" runat="server" text="Remember me"/>
+                        <asp:CheckBox ID="cbReamember" runat="server" text="Remember me"/>
                         <asp:Label ID="Label1" runat="server" Text="Forgot Password"></asp:Label>
                     </li>
                     <li></li>
