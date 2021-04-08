@@ -9,7 +9,8 @@ namespace StagPj
 {
     public partial class Register : System.Web.UI.Page
     {
-     
+        private Utilisateur U;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +24,7 @@ namespace StagPj
                 return;
             }
       
-            Utilisateur U =new Utilisateur();
+            U =new Utilisateur();
             char gertCh =Convert.ToChar( Genre.SelectedValue.Substring(0,1));
                 Response.Write(U.SingUp(temal.Text, tpswrd.Text, tnom.Text, tprenom.Text, Convert.ToDateTime(t_date_nes.Text), gertCh));
             

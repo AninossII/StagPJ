@@ -13,28 +13,42 @@ namespace StagPj
     {
         Action A;
         private DataTable _dataTable;
+        private Connexion con;
+        private Utilisateur U;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            new Connexion();
             A = new Action();
+            con = new Connexion();
 
-            if (A.ModifID != "" && tbPrix.Text == "")
+            U = new Utilisateur();
+
+            if (Request.Cookies["logIn"] != null)
             {
-                Connexion.Con.Open();
+                Response.Write("Login with Cookies");
+                U.Email = Request.Cookies["logIn"]["Email"];
+                U.Password = Request.Cookies["logIn"]["Password"];
+                U.LogIn();
+            }
+            else if (U.ID == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
 
-                System.Data.SqlClient.SqlCommand cmd = new SqlCommand("select * from dbo.action" +
-                                                                      " where ID = '"+ A.ModifID +"'",
-                    Connexion.Con);
+            _dataTable = new DataTable();
+            _dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
 
-                cmd.ExecuteNonQuery();
+            dlCompts.DataSource = _dataTable;
+            dlCompts.DataBind();
+            dlCompts.DataTextField = "Nom";
+            dlCompts.DataValueField = "ID";
+            dlCompts.DataBind();
 
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-
+            if (A.ID != null)
+            {
                 _dataTable = new DataTable();
-
-                dataAdapter.Fill(_dataTable);
-
+                _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+                
                 tbPrix.Text = _dataTable.Rows[0][3].ToString();
                 tbDes.Text = _dataTable.Rows[0][2].ToString();
 
@@ -51,12 +65,13 @@ namespace StagPj
         {
             A = new Action();
 
-            if (A.ModifID == "")
+            if (A.ID == null)
             {
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
 
                 A.Ajouter_Action();
+
                 Response.Redirect("HomePage.aspx");
             }
             else
@@ -64,11 +79,15 @@ namespace StagPj
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
 
-                Response.Write(A.ModifID);
-
                 A.Modifiere_Action();
+
                 Response.Redirect("HomePage.aspx");
             }
+        }
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,69 +9,78 @@ namespace StagPj
 {
     public class Utilisateur
     {
-        private string id;
-        private string email;
+        private static string id;
+        private static string email;
         private string password;
         private string nom;
         private string prenom;
         private DateTime datenes;
         private DateTime dateins;
         private char genre;
-        public Connexion connexion;
+        public Connexion C;
+        
+        public string ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public string Nom
+        {
+            get { return nom; }
+            set { nom = value; }
+        }
+
+        public string Prenom
+        {
+            get { return prenom; }
+            set { prenom = value; }
+        }
+
+        public DateTime Datenes
+        {
+            get { return datenes; }
+            set { datenes = value; }
+        }
+
+        public DateTime Dateins
+        {
+            get { return dateins; }
+            set { dateins = DateTime.Today; }
+        }
+
+        public char Genre
+        {
+            get { return genre; }
+            set { genre = value; }
+        }
+
         public Utilisateur()
         {
-            connexion = new Connexion();
+            C = new Connexion();
         }
+
         public Utilisateur(string email, string pswrd, string nom, string prnm, DateTime datenes, DateTime dateins, char genre)
         {
-            this.email = email;
             this.password = pswrd;
             this.nom = nom;
             this.prenom = prnm;
             this.datenes = datenes;
             this.genre = genre;
         }
-        public string Id
-        {
-            get { return id; }
 
-
-        }
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
-        public string Nom
-        {
-            get { return nom; }
-            set { nom = value; }
-        }
-        public string Prenom
-        {
-            get { return prenom; }
-            set { prenom = value; }
-        }
-        public DateTime Datenes
-        {
-            get { return datenes; }
-            set { datenes = value; }
-        }
-        public DateTime Dateins
-        {
-            get { return dateins; }
-            set { dateins = DateTime.Today; }
-        }
-        public char Genre
-        {
-            get { return genre; }
-            set { genre = value; }
-        }
         public string SingUp(string Email, string Password, string Nom, string Prenom, DateTime Datenes,  char Genres)
         {
             new Connexion();
@@ -105,23 +114,8 @@ namespace StagPj
 
         public string LogIn()
         {
-            new Connexion();
-            Connexion.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.User_Login", Connexion.Con);
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
-            cmd.Parameters.Add("@password", SqlDbType.Char, 20);
-            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
-            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
-
-            cmd.Parameters["@Email"].Value = email;
-            cmd.Parameters["@password"].Value = password;
-
-            cmd.ExecuteNonQuery();
-
-            return cmd.Parameters["@responseMessage"].Value.ToString();
+            C = new Connexion();
+            return C.LogIn(email, password);
         }
     }
 }

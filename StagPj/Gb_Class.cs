@@ -5,7 +5,7 @@ using System.Web;
 
 namespace StagPj
 {
-    public class Home
+    public class Gb_Class
     {
     }
 }

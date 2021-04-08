@@ -15,7 +15,7 @@
     <form id="form1" runat="server" >
     <div>
     
-        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+        <asp:Calendar ID="calDay" runat="server" OnSelectionChanged="calDay_SelectionChanged"></asp:Calendar>
     
     </div>
         <asp:Label ID="dayText" runat="server" Text="Label"></asp:Label>
