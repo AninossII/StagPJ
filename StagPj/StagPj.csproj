@@ -134,7 +134,6 @@
     <Compile Include="Category.cs" />
     <Compile Include="Compte.cs" />
     <Compile Include="Connexion.cs" />
-    <Compile Include="Gb_Class.cs" />
     <Compile Include="Pages\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
