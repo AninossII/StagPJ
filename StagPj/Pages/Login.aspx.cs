@@ -19,7 +19,6 @@ namespace StagPj
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (Request.Cookies["logIn"] != null)
             {
                 tbEmail.Text = Request.Cookies["logIn"]["Email"];

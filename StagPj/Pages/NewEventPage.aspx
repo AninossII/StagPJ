@@ -24,10 +24,9 @@
         
         <p>
 
-        <asp:DropDownList ID="DropDownList1" runat="server" Height="41px" Width="171px" >
-            <asp:ListItem value="1">Jibi</asp:ListItem>
-            <asp:ListItem value="2">CIH</asp:ListItem>
-            </asp:DropDownList>
+        <asp:DropDownList ID="dlCompts" runat="server" Height="41px" Width="171px" >
+            
+        </asp:DropDownList>
 
             <asp:CheckBox ID="cbAjout" TextAlign="Left" runat="server" Text="Ajout: " CssClass="chkListStyle"  OnCheckedChanged="CheckBox1_CheckedChanged" />
         </p>

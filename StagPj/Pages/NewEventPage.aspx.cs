@@ -14,15 +14,38 @@ namespace StagPj
         Action A;
         private DataTable _dataTable;
         private Connexion con;
+        private Utilisateur U;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             A = new Action();
+            con = new Connexion();
+
+            U = new Utilisateur();
+
+            if (Request.Cookies["logIn"] != null)
+            {
+                Response.Write("Login with Cookies");
+                U.Email = Request.Cookies["logIn"]["Email"];
+                U.Password = Request.Cookies["logIn"]["Password"];
+                U.LogIn();
+            }
+            else if (U.ID == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            _dataTable = new DataTable();
+            _dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
+
+            dlCompts.DataSource = _dataTable;
+            dlCompts.DataBind();
+            dlCompts.DataTextField = "Nom";
+            dlCompts.DataValueField = "ID";
+            dlCompts.DataBind();
 
             if (A.ID != null)
             {
-                con = new Connexion();
-                A = new Action();
                 _dataTable = new DataTable();
                 _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
                 
@@ -48,6 +71,7 @@ namespace StagPj
                 A.Des = tbDes.Text;
 
                 A.Ajouter_Action();
+
                 Response.Redirect("HomePage.aspx");
             }
             else
@@ -55,9 +79,8 @@ namespace StagPj
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
 
-                Response.Write(A.ID);
-
                 A.Modifiere_Action();
+
                 Response.Redirect("HomePage.aspx");
             }
         }

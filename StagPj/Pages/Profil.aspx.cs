@@ -9,9 +9,23 @@ namespace StagPj.Pages
 {
     public partial class Profil : System.Web.UI.Page
     {
+        private Utilisateur U;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            U = new Utilisateur();
 
+            if (Request.Cookies["logIn"] != null)
+            {
+                Response.Write("Login with Cookies");
+                U.Email = Request.Cookies["logIn"]["Email"];
+                U.Password = Request.Cookies["logIn"]["Password"];
+                U.LogIn();
+            }
+            else if (U.ID == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 }

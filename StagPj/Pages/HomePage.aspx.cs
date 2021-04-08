@@ -34,7 +34,6 @@ namespace StagPj
             {
                 Response.Redirect("Login.aspx");
             }
-            
 
             dayText.Text = DateTime.Now.ToString("dd");
             monthText.Text = DateTime.Now.Date.ToString("MMMM");

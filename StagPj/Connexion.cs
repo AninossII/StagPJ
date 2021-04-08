@@ -38,7 +38,7 @@ namespace StagPj
             con = new SqlConnection(Sqlstring);
             //con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;            
         }
-
+        
         public DataTable showDataTable(string Sqlcommand)
         {
             con.Open();
@@ -53,7 +53,27 @@ namespace StagPj
             con.Close();
             
             return _dataTable;
+        }
 
+        public DataTable showParamDataTable(string Sqlcommand)
+        {
+            con.Open();
+            SqlCommand _cmd = new SqlCommand(Sqlcommand, con);
+            _cmd.CommandType = CommandType.StoredProcedure;
+
+            _cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
+
+            _cmd.Parameters["@ID"].Value =Guid.Parse(UserId());
+
+            _dataTable = new DataTable();
+            _cmd.ExecuteNonQuery();
+
+            _dataAdapter = new SqlDataAdapter(_cmd);
+            _dataAdapter.Fill(_dataTable);
+
+            con.Close();
+
+            return _dataTable;
         }
 
         public DataTable ExecDataTable(string _cmd)
