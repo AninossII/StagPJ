@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace StagPj
 {
@@ -13,16 +15,18 @@ namespace StagPj
     {
         private Utilisateur U;
         private Connexion C;
+        private static int index = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             
-                tbEmail.Text = Response.Cookies["Email"].Value;
-                tbPass.Text = Response.Cookies["Password"].Value:
-
-
+            if (Request.Cookies["logIn"] != null)
+            {
+                tbEmail.Text = Request.Cookies["logIn"]["Email"];
+                tbPass.Text = Request.Cookies["logIn"]["Password"];
+                cbReamember.Checked = true;
+            }
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             U = new Utilisateur();
@@ -30,23 +34,32 @@ namespace StagPj
             
             U.Email = tbEmail.Text;
             U.Password = tbPass.Text;
-            //Response.Write("Email + Pass " + tbEmail.Text + tbPass.Text);
+            
             string _message = U.LogIn();
             
             _message = _message.Split(' ')[0];
-            Response.Write(_message);
+
             if (_message.Equals("50500##Connected"))
             {
-                if (cbReamember.Checked != false)
+                HttpCookie httpCookie = new HttpCookie("logIn");
+                if (cbReamember.Checked)
                 {
-                    Response.Cookies["Email"].Value = tbEmail.Text;
-                    Response.Cookies["Password"].Value = tbPass.Text;
-                    Response.Write("Data Stored");
+                    httpCookie["Email"] = tbEmail.Text;
+                    httpCookie["Password"] = tbPass.Text;
+                    httpCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(httpCookie);
+
+                    Response.Write("Data Done");
                 }
+                else
+                {
+                    tbEmail.Text = "";
+                    tbPass.Text = "";
+                }
+
                 U.ID = C.UserId();
-
-
-                //Response.Redirect("HomePage.aspx");
+                
+                Response.Redirect("HomePage.aspx");
             }
         }
 

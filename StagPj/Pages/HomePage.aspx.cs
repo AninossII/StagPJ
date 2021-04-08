@@ -23,15 +23,26 @@ namespace StagPj
         {
             U = new Utilisateur();
 
+            if (Request.Cookies["logIn"] != null)
+            {
+                Response.Write("Login with Cookies");
+                U.Email = Request.Cookies["logIn"]["Email"];
+                U.Password = Request.Cookies["logIn"]["Password"];
+                U.LogIn();
+            }
+            else if (U.ID == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            
+
             dayText.Text = DateTime.Now.ToString("dd");
             monthText.Text = DateTime.Now.Date.ToString("MMMM");
             Label3.Text = "Today";
             Label4.Text = "1" + "Event";
 
             timeText.Visible = false;
-
-            Response.Write(U.ID);
-
+            
             System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml("#FFC953");
             calDay.DayHeaderStyle.BackColor = Color.White;
             calDay.BackColor = Color.White;
