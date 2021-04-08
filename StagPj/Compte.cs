@@ -26,7 +26,7 @@ namespace StagPj
             this.c_montant = c_montant;
 
         }
-        public static string ID
+        public string ID
         {
             get { return id; }
             set { id = value; }

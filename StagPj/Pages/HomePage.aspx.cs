@@ -14,9 +14,11 @@ namespace StagPj
     public partial class HomePage : System.Web.UI.Page
     {
         private Action A = new Action();
+        private Compte C;
         private Utilisateur U;
-        private string _name;
         private Connexion con;
+        
+        private string _name;
         private static string _selectDay;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace StagPj
             dayText.Text = DateTime.Now.ToString("dd");
             monthText.Text = DateTime.Now.Date.ToString("MMMM");
             Label3.Text = "Today";
-            Label4.Text = "1" + "Event";
+            ;
 
             timeText.Visible = false;
             
@@ -85,24 +87,10 @@ namespace StagPj
                 _table.Merge(con.showDataTable("select * from dbo.action" +" where C_id = '" + cRaw["ID"] + "'")); 
             }
 
-            /*DateTime previewTime= DateTime.Now;
-            foreach (DataRow cRaw in _cTable.Rows)
-            {
-                var time = DateTime.Parse(cRaw["Time"].ToString());
-                
-                if (previewTime > time)
-                {
-                    DataRow row = cRaw;
-                    cRaw[previewTime.ToString()] = cRaw[time.ToString()];
-                    cRaw[time.ToString()] = row;
-                }
-                previewTime = time;
-
-            }
-            */
-
             _table.DefaultView.Sort = "Time DESC";
-            
+
+            Label4.Text = _table.Rows.Count + " Event";
+
             return _table.DefaultView.ToTable(); 
         }
 
@@ -121,29 +109,16 @@ namespace StagPj
                 {
                     timeText.Controls.Add(new LiteralControl("<div class=" + "Event" + ">"));
 
-                    // string _time = dataRow["Time"].ToString().Split(' ')[1];
-                    string _time = dataRow["Time"].ToString();
-
-                    /*int i = 0;
-                    int k = 0;
-
-                    foreach (char c in _time)
-                    {
-                        if (c == ':')
-                            k += 1;
-
-                        i++;
-
-                        if (k == 2)
-                            break;
-                    }
-                    */
+                    string _time = DateTime.Parse(dataRow["Time"].ToString()).ToString("HH:mm tt");
+                    
 
                     SponeNewEvent("prixLabel", dataRow["Prix"].ToString(), " ", " DH");
-                    SponeNewEvent("timeLabel", _time, "</br>", "");
+                    SponeNewEvent("timeLabel", _time, " ", "");
+                    SponeNewEvent("acountLabel", con.ComptId(dataRow["C_id"].ToString()), "</br>", "");
                     SponeNewEvent("desLabel", dataRow["Designation"].ToString(), "</br></br>", "");
 
-                    string _id = dataRow[0].ToString();
+                    string a_id = dataRow[0].ToString();
+                    string c_id = dataRow[4].ToString();
 
 
                     var modButton = new Button();
@@ -151,7 +126,9 @@ namespace StagPj
                     modButton.Click += (s, ef) =>
                     {
                         A = new Action();
-                        A.ID = _id;
+                        C = new Compte();
+                        C.ID = c_id;
+                        A.ID = a_id;
                         Response.Redirect("NewEventPage.aspx");
                     };
                     timeText.Visible = true;
@@ -164,7 +141,9 @@ namespace StagPj
                     supButton.Click += (s, ef) =>
                     {
                         A = new Action();
-                        A.ID = _id;
+                        C = new Compte();
+                        C.ID = c_id;
+                        A.ID = a_id;
                         A.Suppretion_Action();
                         Response.Redirect("HomePage.aspx");
                     };

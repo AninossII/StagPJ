@@ -11,7 +11,7 @@ namespace StagPj
     {
 
         private static string Id;
-        private DateTime time;
+        private static DateTime time;
         private float montant;
         private string designation;
         public Compte C;
@@ -36,6 +36,12 @@ namespace StagPj
             set { Id = value; }
         }
 
+        public DateTime Time
+        {
+            get { return time; }
+            set { time = value; }
+        }
+
         public Action()
         {
             C = new Compte();
@@ -44,7 +50,6 @@ namespace StagPj
 
         public Action(DateTime time, float montant, string designation)
         {
-            this.time = time;
             this.montant = montant;
             this.designation = designation;
         }

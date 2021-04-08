@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Configuration;
+using System.Drawing;
 
 
 namespace StagPj
@@ -119,10 +120,43 @@ namespace StagPj
             return idExecuteScalar.ToString();
         }
 
+        ////////////// ----- Compte ID ----- //////////////
+
+        public string ComptId(string id)
+        {
+            U = new Utilisateur();
+
+            con.Open();
+
+            _cmd = new SqlCommand("select dbo.Get_name_from_ID('" + id + "')", con);
+
+            var idExecuteScalar = _cmd.ExecuteScalar();
+
+            con.Close();
+
+            return idExecuteScalar.ToString();
+        }
+
+        /*public string ComptIdbyName(string cbName)
+        {
+            U = new Utilisateur();
+            C = new Compte();
+            con.Open();
+
+            _cmd = new SqlCommand("SELECT dbo.Get_ID_from_nom_U_ID('"++"','"+U.ID+"')", con);
+
+            var idExecuteScalar = _cmd.ExecuteScalar();
+
+            con.Close();
+
+            return idExecuteScalar.ToString();
+        }*/
+
         ////////////// ----- Action ----- //////////////
 
         public string Ajouter_Action(string des, float prix)
         {
+            C = new Compte();
             con.Open();
 
             _cmd = new SqlCommand("dbo.I_Action", con);
@@ -139,7 +173,7 @@ namespace StagPj
             _cmd.Parameters["@Time"].Value = DateTime.Now;
             _cmd.Parameters["@Designation"].Value = des;
             _cmd.Parameters["@Prix"].Value = prix;
-            _cmd.Parameters["@C_id"].Value = Guid.Parse(Compte.ID);
+            _cmd.Parameters["@C_id"].Value = Guid.Parse(C.ID);
              
             _cmd.ExecuteNonQuery();
 
@@ -150,6 +184,7 @@ namespace StagPj
 
         public string Modifiere_Action(string des,float prix)
         {
+            C = new Compte();
             A = new Action();
 
             con.Open();
@@ -167,10 +202,10 @@ namespace StagPj
             _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
             _cmd.Parameters["@ID"].Value = Guid.Parse(A.ID);
-            _cmd.Parameters["@Time"].Value = DateTime.Now;
+            _cmd.Parameters["@Time"].Value = A.Time;
             _cmd.Parameters["@Designation"].Value = des;
             _cmd.Parameters["@Prix"].Value = prix;
-            _cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
+            _cmd.Parameters["@C_id"].Value = Guid.Parse(C.ID);
 
             _cmd.ExecuteNonQuery();
 
@@ -183,6 +218,7 @@ namespace StagPj
 
         public string Suppretion_Action()
         {
+            C = new Compte();
             A = new Action();
 
             con.Open();
