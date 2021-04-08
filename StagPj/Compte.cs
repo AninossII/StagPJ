@@ -80,7 +80,7 @@ namespace StagPj
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
             cmd.Parameters.Add("@C_Montant", SqlDbType.Float);
-            cmd.Parameters.Add("@C_id", SqlDbType.UniqueIdentifier);
+            cmd.Parameters.Add("@U_id", SqlDbType.UniqueIdentifier);
 
             cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
             cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
@@ -88,7 +88,7 @@ namespace StagPj
 
             cmd.Parameters["@Nom"].Value = Nom;
             cmd.Parameters["@C_Montant"].Value = Convert.ToDouble(C_Montant);
-            cmd.Parameters["@C_id"].Value = Guid.Parse("7F1CB55C-0FDA-4AD7-BA40-9E7E2276B06C");
+            cmd.Parameters["@U_id"].Value = Guid.Parse("7F1CB55C-0FDA-4AD7-BA40-9E7E2276B06C");
 
 
             cmd.ExecuteNonQuery();
@@ -97,7 +97,7 @@ namespace StagPj
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
         }
-        public string suppretion_Compte()
+        public string suppretion_Compte(string id )
         {
             new Connexion();
             Connexion.Con.Open();

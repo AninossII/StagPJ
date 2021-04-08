@@ -101,6 +101,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts.aspx" />
     <Content Include="Pages\HomePage.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\NewEventPage.aspx" />
@@ -128,6 +129,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts.aspx.cs">
+      <DependentUpon>Accounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts.aspx.designer.cs">
+      <DependentUpon>Accounts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Action.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Compte.cs" />
