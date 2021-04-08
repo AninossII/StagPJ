@@ -120,6 +120,7 @@
   <ItemGroup>
     <Content Include="Pages\Profil.aspx" />
     <Content Include="Pages\Register.aspx" />
+    <Content Include="Pages\Sources\Css\Style.css" />
     <Content Include="Pages\Sources\Css\StyleSheet_Login.css" />
     <Content Include="Pages\Sources\Css\StyleSheet_Profil.css" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />

@@ -18,6 +18,7 @@ namespace StagPj
         protected void Page_Load(object sender, EventArgs e)
         {
             A = new Action();
+
             if (A.ID != null)
             {
                 con = new Connexion();
@@ -59,6 +60,11 @@ namespace StagPj
                 A.Modifiere_Action();
                 Response.Redirect("HomePage.aspx");
             }
+        }
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
