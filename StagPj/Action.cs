@@ -14,7 +14,7 @@ namespace StagPj
         private DateTime time;
         private float montant;
         private string designation;
-        public Compte compte;
+        public Compte C;
         public Utilisateur utilisateur;
         private Connexion con = new Connexion();
 
@@ -38,7 +38,7 @@ namespace StagPj
 
         public Action()
         {
-            compte = new Compte();
+            C = new Compte();
             utilisateur = new Utilisateur();
         }
 

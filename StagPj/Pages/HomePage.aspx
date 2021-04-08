@@ -31,6 +31,8 @@
         
         <asp:Button ID="tbnNewevent" runat="server" Text="Add Event" OnClick="Button1_Click" />
         </p>
+        <asp:GridView ID="GridView1" runat="server">
+        </asp:GridView>
     </form>
 </body>
 </html>

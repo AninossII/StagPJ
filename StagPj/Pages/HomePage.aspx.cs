@@ -42,19 +42,18 @@ namespace StagPj
 
             timeText.Visible = false;
             
-            System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml("#FFC953");
+            Color col = ColorTranslator.FromHtml("#FFC953");
             calDay.DayHeaderStyle.BackColor = Color.White;
             calDay.BackColor = Color.White;
 
+            calDay.SelectedDayStyle.BackColor = col;
             if (_selectDay == null)
             {
                 calDay.SelectedDate = DateTime.Today;
-                calDay.SelectedDayStyle.BackColor = col;
             }
             else
             {
                 calDay.SelectedDate = DateTime.Parse(_selectDay);
-                calDay.SelectedDayStyle.BackColor = col;
             }
             SponingEvents();
             
@@ -73,17 +72,51 @@ namespace StagPj
 
         }
 
+        private DataTable ActionTable()
+        {
+            con = new Connexion(); 
+
+            DataTable _cTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
+
+            DataTable _table = new DataTable();
+
+            foreach (DataRow cRaw in _cTable.Rows)
+            {
+                _table.Merge(con.showDataTable("select * from dbo.action" +" where C_id = '" + cRaw["ID"] + "'")); 
+            }
+
+            /*DateTime previewTime= DateTime.Now;
+            foreach (DataRow cRaw in _cTable.Rows)
+            {
+                var time = DateTime.Parse(cRaw["Time"].ToString());
+                
+                if (previewTime > time)
+                {
+                    DataRow row = cRaw;
+                    cRaw[previewTime.ToString()] = cRaw[time.ToString()];
+                    cRaw[time.ToString()] = row;
+                }
+                previewTime = time;
+
+            }
+            */
+
+            _table.DefaultView.Sort = "Time DESC";
+            
+            return _table.DefaultView.ToTable(); 
+        }
+
         private void SponingEvents()
         {
             con = new Connexion();
-            DataTable table = con.showDataTable("select * from dbo.action" +
-                                                " where C_id = 'F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6'");
+            DataTable _table = ActionTable();
 
-            foreach (DataRow dataRow in table.Rows)
+            foreach (DataRow dataRow in _table.Rows)
             {
+                
                 string _date = dataRow["Time"].ToString().Split(' ')[0];
                 _selectDay = calDay.SelectedDate.ToShortDateString();
-
+                
                 if (_date == _selectDay)
                 {
                     timeText.Controls.Add(new LiteralControl("<div class=" + "Event" + ">"));

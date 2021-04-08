@@ -15,14 +15,13 @@ namespace StagPj
         private DataTable _dataTable;
         private Connexion con;
         private Utilisateur U;
-
+        private Compte C;
         protected void Page_Load(object sender, EventArgs e)
         {
+            U = new Utilisateur();
             A = new Action();
             con = new Connexion();
-
-            U = new Utilisateur();
-
+            
             if (Request.Cookies["logIn"] != null)
             {
                 Response.Write("Login with Cookies");
@@ -64,11 +63,13 @@ namespace StagPj
         protected void Button1_Click(object sender, EventArgs e)
         {
             A = new Action();
+            C = new Compte();
 
             if (A.ID == null)
             {
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
+                Compte.ID = dlCompts.SelectedValue;
 
                 A.Ajouter_Action();
 
@@ -78,7 +79,6 @@ namespace StagPj
             {
                 A.Montant = float.Parse(tbPrix.Text);
                 A.Des = tbDes.Text;
-
                 A.Modifiere_Action();
 
                 Response.Redirect("HomePage.aspx");

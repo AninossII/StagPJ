@@ -13,7 +13,7 @@ namespace StagPj
     public class Connexion
     {
         private static string Sqlstring = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
-        private static string _userId;
+        private static string id;
 
         static SqlConnection con = new SqlConnection(Sqlstring);
         private SqlCommand _cmd;
@@ -54,7 +54,7 @@ namespace StagPj
             
             return _dataTable;
         }
-
+        
         public DataTable showParamDataTable(string Sqlcommand)
         {
             con.Open();
@@ -139,7 +139,7 @@ namespace StagPj
             _cmd.Parameters["@Time"].Value = DateTime.Now;
             _cmd.Parameters["@Designation"].Value = des;
             _cmd.Parameters["@Prix"].Value = prix;
-            _cmd.Parameters["@C_id"].Value = Guid.Parse("F7C64F98-2495-4DAE-9387-3F2E9E9A7BB6");
+            _cmd.Parameters["@C_id"].Value = Guid.Parse(Compte.ID);
              
             _cmd.ExecuteNonQuery();
 
@@ -179,7 +179,6 @@ namespace StagPj
             A.ID = null;
 
             return _cmd.Parameters["@responseMessage"].Value.ToString();
-
         }
 
         public string Suppretion_Action()
@@ -197,8 +196,7 @@ namespace StagPj
             _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
 
             _cmd.Parameters["@ID"].Value = Guid.Parse(A.ID);
-
-
+            
             _cmd.ExecuteNonQuery();
 
             con.Close();
@@ -206,7 +204,6 @@ namespace StagPj
             A.ID = null;
 
             return _cmd.Parameters["@responseMessage"].Value.ToString();
-
         }
 
         ////////////// ----- User ----- //////////////
