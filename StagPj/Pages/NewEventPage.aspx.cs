@@ -51,13 +51,15 @@ namespace StagPj
                 dlCompts.DataBind();
                 bMod = false;
             }
-            
 
-            _dataTable = new DataTable();
-            _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+            
 
             if (A.ID != null && tbPrix.Text == String.Empty)
             {
+                _dataTable = new DataTable();
+                _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+
+                A.Time = DateTime.Parse(_dataTable.Rows[0][1].ToString());
                 tbPrix.Text = _dataTable.Rows[0][3].ToString();
                 tbDes.Text = _dataTable.Rows[0][2].ToString();
                 dlCompts.Items.FindByValue(C.ID).Selected = true;
@@ -80,28 +82,24 @@ namespace StagPj
 
             A.Montant = float.Parse(tbPrix.Text);
             A.Des = tbDes.Text;
-            A.Time = DateTime.Parse(_dataTable.Rows[0][1].ToString());
 
-                bMod = true;
-            
-            if (C.ID == dlCompts.Text)
+            bMod = true;
+            if (A.ID == null)
             {
-                if (A.ID == null)
-                {
-                    A.Ajouter_Action();
+                C.ID = dlCompts.Text;
+                A.Ajouter_Action();
+                
+                Response.Redirect("HomePage.aspx");
+            }
+            else if (C.ID == dlCompts.Text)
+            {
+                A.Modifiere_Action();
 
-                    //Response.Redirect("HomePage.aspx");
-                }
-                else
-                {
-                    A.Modifiere_Action();
-
-                    //Response.Redirect("HomePage.aspx");
-                }
+                Response.Redirect("HomePage.aspx");
+            
             }
             else
             {
-                Response.Write("Else");
                 C.ID = dlCompts.Text;
                 A.Suppretion_Action();
                 A.Ajouter_Action();
