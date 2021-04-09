@@ -5,14 +5,7 @@
       <Items />
     </LogicalFolder>
     <LogicalFolder Name="Requêtes" Type="1" Sorted="true">
-      <Items>
-        <FileNode Name="MDXQuery1.mdx">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>MDXQuery1.mdx</FullPath>
-        </FileNode>
-      </Items>
+      <Items />
     </LogicalFolder>
     <LogicalFolder Name="Divers" Type="3" Sorted="true">
       <Items>
