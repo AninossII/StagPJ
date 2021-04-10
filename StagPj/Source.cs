@@ -5,17 +5,17 @@ using System.Web;
 
 namespace StagPj
 {
-    public class Sour
+    public class Source
     {
         private string id;
         private string designation;
         public Connexion connexion;
-        public Sour()
+        public Source()
         {
             connexion = new Connexion();
 
         }
-        public Sour(string designation)
+        public Source(string designation)
         {
             this.designation = designation;
         }

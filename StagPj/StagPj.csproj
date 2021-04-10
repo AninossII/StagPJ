@@ -197,7 +197,7 @@
     <Compile Include="Pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sour.cs" />
+    <Compile Include="Source.cs" />
     <Compile Include="Utilisateur.cs" />
   </ItemGroup>
   <ItemGroup>

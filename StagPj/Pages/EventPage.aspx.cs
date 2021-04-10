@@ -26,7 +26,11 @@ namespace StagPj
             u = new Utilisateur();
             con = new Connexion();
 
-            if (Request.Cookies["logIn"] != null)
+            if (u.ID != null)
+            {
+
+            }
+            else if (Request.Cookies["logIn"] != null)
             {
                 u.Email = Request.Cookies["logIn"]["Email"];
                 u.Password = Request.Cookies["logIn"]["Password"];
@@ -142,7 +146,7 @@ namespace StagPj
                         c.ID = c_id;
                         a.ID = a_id;
                         a.Suppretion_Action();
-                        Response.Redirect("HomePage.aspx");
+                        Response.Redirect("EventPage.aspx");
                     };
                     timeText.Visible = true;
                     timeText.Controls.Add(supButton);

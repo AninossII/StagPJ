@@ -11,34 +11,41 @@ namespace StagPj
 {
     public partial class NewEventPage : System.Web.UI.Page
     {
-        private Action A;
+        private Action a;
+        private In inMoney;
+        private Out outMoney;
+
         private Connexion con;
-        private Utilisateur U;
-        private Compte C;
+        private Utilisateur u;
+        private Compte c;
 
         private DataTable dataTable;
-        private static bool bMod = true;
+        private static bool _bMod = true;
         private static string coptName;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            U = new Utilisateur();
-            A = new Action();
-            C = new Compte();
+            u = new Utilisateur();
+            a = new Action();
+            c = new Compte();
             con = new Connexion();
-            
-            if (Request.Cookies["logIn"] != null)
+
+            if (u.ID != null)
             {
-                U.Email = Request.Cookies["logIn"]["Email"];
-                U.Password = Request.Cookies["logIn"]["Password"];
-                U.LogIn();
+
             }
-            else if (U.ID == null)
+            else if (Request.Cookies["logIn"] != null)
+            {
+                u.Email = Request.Cookies["logIn"]["Email"];
+                u.Password = Request.Cookies["logIn"]["Password"];
+                u.LogIn();
+            }
+            else if (u.ID == null)
             {
                 Response.Redirect("Login.aspx");
             }
 
-            if (bMod)
+            if (_bMod)
             {
                 dataTable = new DataTable();
                 dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
@@ -48,24 +55,20 @@ namespace StagPj
                 dlCompts.DataTextField = "Nom";
                 dlCompts.DataValueField = "ID";
                 dlCompts.DataBind();
-                bMod = false;
+                _bMod = false;
             }
 
-            
-
-            if (A.ID != null && tbPrix.Text == String.Empty)
-            {
+            if (a.ID != null && tbPrix.Text == String.Empty)
+            { 
                 dataTable = new DataTable();
-                dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+                dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + a.ID + "'");
                 
                 tbPrix.Text = dataTable.Rows[0][3].ToString().Trim();
                 tbDes.Text = dataTable.Rows[0][2].ToString().ToString().Trim();
-                dlCompts.Items.FindByValue(C.ID).Selected = true;
+                dlCompts.Items.FindByValue(c.ID).Selected = true;
                 btnEvent.Text = "Modifier Event";
-                bMod = false;
+                _bMod = false;
             }
-            
-
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -75,44 +78,47 @@ namespace StagPj
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            A = new Action();
-            C = new Compte();
+            a = new Action();
+            inMoney = new In();
+            outMoney = new Out();
+
+            c = new Compte();
             con = new Connexion();
 
-            A.Montant = float.Parse(tbPrix.Text);
-            A.Des = tbDes.Text;
-            C.ID = dlCompts.Text;
-            bMod = true;
+            a.Montant = float.Parse(tbPrix.Text);
+            a.Des = tbDes.Text;
+            c.ID = dlCompts.Text;
+            _bMod = true;
             
-            if (C.ID == dlCompts.Text || A.ID == null)
+            if (c.ID == dlCompts.Text || a.ID == null)
             {
-                if (A.ID == null)
+                if (a.ID == null)
                 {
-                    A.Ajouter_Action();
+                    a.Ajouter_Action();
                     if (cbAjout.Checked)
                     {
-                        con.AddIn(float.Parse(tbPrix.Text));
+                        inMoney.Add();
                     }
                     else
                     {
-                        con.WithdrawOut(float.Parse(tbPrix.Text));
+                        outMoney.Withdraw();
                     }
                     Response.Redirect("EventPage.aspx");
                 }
                 else
                 {
-                    A.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
-                    A.Modifiere_Action();
+                    a.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
+                    a.Modifiere_Action();
 
                     Response.Redirect("EventPage.aspx");
                 }
             }
             else
             {
-                A.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
+                a.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
                 
-                A.Suppretion_Action();
-                A.Ajouter_Action();
+                a.Suppretion_Action();
+                a.Ajouter_Action();
 
                 Response.Redirect("EventPage.aspx");
             }

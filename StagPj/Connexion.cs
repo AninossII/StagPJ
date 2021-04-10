@@ -83,7 +83,6 @@ namespace StagPj
 
         public string UserId()
         {
-            con.Close();
             con.Open();
 
             U = new Utilisateur();
@@ -248,9 +247,9 @@ namespace StagPj
 
 
 
-        ////////////// ----- In ----- //////////////
+        ////////////// ----- InMoney ----- //////////////
 
-        public string AddIn(float prix)
+        public string Add_Money(float prix)
         {
             U = new Utilisateur();
             C = new Compte();
@@ -279,16 +278,16 @@ namespace StagPj
             return _cmd.Parameters["@responseMessage"].Value.ToString();
         }
 
-        ////////////// ----- In ----- //////////////
+        ////////////// ----- WidrawMoney ----- //////////////
 
-        public string WithdrawOut(float prix)
+        public string Withdraw_Money(float prix)
         {
             U = new Utilisateur();
             C = new Compte();
 
             con.Open();
 
-            _cmd = new SqlCommand("Withdraw_Money_from_comptey", con);
+            _cmd = new SqlCommand("Withdraw_Money_from_compte", con);
 
             _cmd.CommandType = CommandType.StoredProcedure;
 

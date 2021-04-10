@@ -12,7 +12,7 @@ namespace StagPj
 
         private static string Id;
         private static DateTime time;
-        private float montant;
+        private static float _montant;
         private string designation;
         public Compte C;
         public Utilisateur utilisateur;
@@ -20,8 +20,8 @@ namespace StagPj
 
         public float Montant
         {
-            get { return montant; }
-            set { montant = value; }
+            get { return _montant; }
+            set { _montant = value; }
         }
 
         public string Des
@@ -48,20 +48,20 @@ namespace StagPj
             utilisateur = new Utilisateur();
         }
 
-        public Action(DateTime time, float montant, string designation)
+        public Action(DateTime time, string designation)
         {
-            this.montant = montant;
+            
             this.designation = designation;
         }
 
         public string Ajouter_Action()
         {
-            return con.Ajouter_Action(designation, montant);
+            return con.Ajouter_Action(designation, _montant);
         }
 
         public string Modifiere_Action()
         {
-            return con.Modifiere_Action(designation, montant);
+            return con.Modifiere_Action(designation, _montant);
         }
 
         public string Suppretion_Action()

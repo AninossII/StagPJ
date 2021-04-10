@@ -7,8 +7,16 @@ namespace StagPj
 {
     public class Out : Action
     {
-        public Category cat;
-        public Out() : base()
+        private Connexion con;
+        private Category cat;
+
+        public void Withdraw()
+        {
+            con = new Connexion();
+            con.Withdraw_Money(Montant);
+        }
+
+        /*public Out() : base()
         {
             cat = new Category();
         }
@@ -16,6 +24,6 @@ namespace StagPj
         {
             
             return 0;
-        }
+        }*/
     }
 }

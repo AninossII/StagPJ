@@ -116,8 +116,8 @@ namespace StagPj
         {
             con = new Connexion();
             
-            string loginMessage = con.LogIn(email, password);
-            if (loginMessage.Split(' ')[0] == "50500##Connected")
+            string loginMessage = con.LogIn(email, password).Trim();
+            if (loginMessage == "50500##Connected")
             {
                 id = con.UserId();
             }
