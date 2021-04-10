@@ -14,7 +14,7 @@ namespace StagPj
     public partial class Login : System.Web.UI.Page
     {
         private Utilisateur U;
-        private Connexion C;
+        private Connexion con;
         private static int index = 0;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,17 +29,13 @@ namespace StagPj
         protected void Button1_Click(object sender, EventArgs e)
         {
             U = new Utilisateur();
-            C = new Connexion();
+            con = new Connexion();
             
-            U.Email = tbEmail.Text;
-            U.Password = tbPass.Text;
-            
-            string _message = U.LogIn();
-            
-            _message = _message.Split(' ')[0];
-
-            if (_message.Equals("50500##Connected"))
+            if (U.LogIn().Equals("50500##Connected"))
             {
+                U.Email = tbEmail.Text;
+                U.Password = tbPass.Text;
+
                 HttpCookie httpCookie = new HttpCookie("logIn");
                 if (cbReamember.Checked)
                 {
@@ -56,8 +52,6 @@ namespace StagPj
                     tbPass.Text = "";
                 }
 
-                U.ID = C.UserId();
-                
                 Response.Redirect("HomePage.aspx");
             }
         }

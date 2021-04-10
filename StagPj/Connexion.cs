@@ -14,13 +14,13 @@ namespace StagPj
     public class Connexion
     {
         private static string Sqlstring = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
-        private static string id;
+
 
         static SqlConnection con = new SqlConnection(Sqlstring);
         private SqlCommand _cmd;
         private SqlDataAdapter _dataAdapter;
         private DataTable _dataTable ;
-
+        
         private Action A;
         private Compte C;
         private Utilisateur U;
@@ -59,12 +59,14 @@ namespace StagPj
         public DataTable showParamDataTable(string Sqlcommand)
         {
             con.Open();
+            U = new Utilisateur();
+
             SqlCommand _cmd = new SqlCommand(Sqlcommand, con);
             _cmd.CommandType = CommandType.StoredProcedure;
 
             _cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
 
-            _cmd.Parameters["@ID"].Value =Guid.Parse(UserId());
+            _cmd.Parameters["@ID"].Value =Guid.Parse(U.ID);
 
             _dataTable = new DataTable();
             _cmd.ExecuteNonQuery();
@@ -76,48 +78,23 @@ namespace StagPj
 
             return _dataTable;
         }
-
-        public DataTable ExecDataTable(string _cmd)
-        {
-            try
-            {
-                con.Open();
-                SqlCommand sqlcmd = new SqlCommand();
-                int row = sqlcmd.ExecuteNonQuery();
-                if (row > 0)
-                    HttpContext.Current.Response.Write("<script>alert('your cammand done '/script>");
-                else
-                {
-                    HttpContext.Current.Response.Write("<script>alert('something '/script>");
-                }
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return _dataTable;
-        }
-
+        
         ////////////// ----- User ID ----- //////////////
 
         public string UserId()
         {
-            U = new Utilisateur();
-
+            con.Close();
             con.Open();
 
+            U = new Utilisateur();
+
             _cmd = new SqlCommand("select dbo.Get_ID_Utilisateur('" + U.Email + "')", con);
-            
-            var idExecuteScalar = _cmd.ExecuteScalar();
+
+            var executeScalar = _cmd.ExecuteScalar();
 
             con.Close();
 
-            return idExecuteScalar.ToString();
+            return executeScalar.ToString();
         }
 
         ////////////// ----- Compte ID ----- //////////////
@@ -261,6 +238,70 @@ namespace StagPj
 
             _cmd.Parameters["@Email"].Value = email;
             _cmd.Parameters["@password"].Value = password;
+
+            _cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            return _cmd.Parameters["@responseMessage"].Value.ToString();
+        }
+
+
+
+        ////////////// ----- In ----- //////////////
+
+        public string AddIn(float prix)
+        {
+            U = new Utilisateur();
+            C = new Compte();
+
+            con.Open();
+
+            _cmd = new SqlCommand("dbo.Add_Money", con);
+
+            _cmd.CommandType = CommandType.StoredProcedure;
+
+            _cmd.Parameters.Add("@id_C", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@id_U", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@Montant", SqlDbType.Float);
+            _cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+
+            _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            _cmd.Parameters["@id_C"].Value = Guid.Parse(C.ID);
+            _cmd.Parameters["@id_U"].Value = Guid.Parse(U.ID);
+            _cmd.Parameters["@Montant"].Value = prix;
+
+            _cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            return _cmd.Parameters["@responseMessage"].Value.ToString();
+        }
+
+        ////////////// ----- In ----- //////////////
+
+        public string WithdrawOut(float prix)
+        {
+            U = new Utilisateur();
+            C = new Compte();
+
+            con.Open();
+
+            _cmd = new SqlCommand("Withdraw_Money_from_comptey", con);
+
+            _cmd.CommandType = CommandType.StoredProcedure;
+
+            _cmd.Parameters.Add("@id_C", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@id_U", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add("@Montant", SqlDbType.Float);
+            _cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+
+            _cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            _cmd.Parameters["@id_C"].Value = Guid.Parse(C.ID);
+            _cmd.Parameters["@id_U"].Value = Guid.Parse(U.ID);
+            _cmd.Parameters["@Montant"].Value = prix;
 
             _cmd.ExecuteNonQuery();
 

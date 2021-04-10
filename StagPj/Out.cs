@@ -5,15 +5,16 @@ using System.Web;
 
 namespace StagPj
 {
-    public class Out:Action
+    public class Out : Action
     {
-        public Category category;
+        public Category cat;
         public Out() : base()
         {
-            category = new Category();
+            cat = new Category();
         }
         public float losses()
         {
+            
             return 0;
         }
     }

@@ -17,7 +17,8 @@ namespace StagPj
         private DateTime datenes;
         private DateTime dateins;
         private char genre;
-        public Connexion Con;
+
+        private  Connexion con;
         
         public string ID
         {
@@ -69,7 +70,6 @@ namespace StagPj
 
         public Utilisateur()
         {
-            Con = new Connexion();
         }
 
         public Utilisateur(string email, string pswrd, string nom, string prnm, DateTime datenes, DateTime dateins, char genre)
@@ -114,8 +114,14 @@ namespace StagPj
 
         public string LogIn()
         {
-            Con = new Connexion();
-            return Con.LogIn(email, password);
+            con = new Connexion();
+            
+            string loginMessage = con.LogIn(email, password);
+            if (loginMessage.Split(' ')[0] == "50500##Connected")
+            {
+                id = con.UserId();
+            }
+            return loginMessage;
         }
     }
 }

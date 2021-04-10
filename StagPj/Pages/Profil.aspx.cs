@@ -17,7 +17,6 @@ namespace StagPj.Pages
 
             if (Request.Cookies["logIn"] != null)
             {
-                Response.Write("Login with Cookies");
                 U.Email = Request.Cookies["logIn"]["Email"];
                 U.Password = Request.Cookies["logIn"]["Password"];
                 U.LogIn();

@@ -11,7 +11,7 @@ namespace StagPj.Pages
 {
 
 
-    public partial class HomePage
+    public partial class TestForm
     {
 
         /// <summary>

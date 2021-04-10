@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="StagPj.Pages.HomePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestEnv.aspx.cs" Inherits="StagPj.Pages.TestForm" %>
 
 <!DOCTYPE html>
 

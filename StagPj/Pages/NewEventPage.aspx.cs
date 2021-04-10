@@ -16,7 +16,7 @@ namespace StagPj
         private Utilisateur U;
         private Compte C;
 
-        private DataTable _dataTable;
+        private DataTable dataTable;
         private static bool bMod = true;
         private static string coptName;
 
@@ -29,7 +29,6 @@ namespace StagPj
             
             if (Request.Cookies["logIn"] != null)
             {
-                Response.Write("Login with Cookies");
                 U.Email = Request.Cookies["logIn"]["Email"];
                 U.Password = Request.Cookies["logIn"]["Password"];
                 U.LogIn();
@@ -41,25 +40,26 @@ namespace StagPj
 
             if (bMod)
             {
-                _dataTable = new DataTable();
-                _dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
+                dataTable = new DataTable();
+                dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
 
-                dlCompts.DataSource = _dataTable;
+                dlCompts.DataSource = dataTable;
                 dlCompts.DataBind();
                 dlCompts.DataTextField = "Nom";
                 dlCompts.DataValueField = "ID";
                 dlCompts.DataBind();
                 bMod = false;
             }
-            
 
-            _dataTable = new DataTable();
-            _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+            
 
             if (A.ID != null && tbPrix.Text == String.Empty)
             {
-                tbPrix.Text = _dataTable.Rows[0][3].ToString();
-                tbDes.Text = _dataTable.Rows[0][2].ToString();
+                dataTable = new DataTable();
+                dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + A.ID + "'");
+                
+                tbPrix.Text = dataTable.Rows[0][3].ToString().Trim();
+                tbDes.Text = dataTable.Rows[0][2].ToString().ToString().Trim();
                 dlCompts.Items.FindByValue(C.ID).Selected = true;
                 btnEvent.Text = "Modifier Event";
                 bMod = false;
@@ -70,43 +70,51 @@ namespace StagPj
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("HomePage.aspx");
+            Response.Redirect("EventPage.aspx");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             A = new Action();
             C = new Compte();
+            con = new Connexion();
 
             A.Montant = float.Parse(tbPrix.Text);
             A.Des = tbDes.Text;
-            A.Time = DateTime.Parse(_dataTable.Rows[0][1].ToString());
-
-                bMod = true;
+            C.ID = dlCompts.Text;
+            bMod = true;
             
-            if (C.ID == dlCompts.Text)
+            if (C.ID == dlCompts.Text || A.ID == null)
             {
                 if (A.ID == null)
                 {
                     A.Ajouter_Action();
-
-                    //Response.Redirect("HomePage.aspx");
+                    if (cbAjout.Checked)
+                    {
+                        con.AddIn(float.Parse(tbPrix.Text));
+                    }
+                    else
+                    {
+                        con.WithdrawOut(float.Parse(tbPrix.Text));
+                    }
+                    Response.Redirect("EventPage.aspx");
                 }
                 else
                 {
+                    A.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
                     A.Modifiere_Action();
 
-                    //Response.Redirect("HomePage.aspx");
+                    Response.Redirect("EventPage.aspx");
                 }
             }
             else
             {
-                Response.Write("Else");
-                C.ID = dlCompts.Text;
+                A.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
+                
                 A.Suppretion_Action();
                 A.Ajouter_Action();
 
-                Response.Redirect("HomePage.aspx");
+                Response.Redirect("EventPage.aspx");
             }
 
         }
