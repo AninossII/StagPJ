@@ -94,13 +94,15 @@ namespace StagPj
             {
                 if (a.ID == null)
                 {
-                    a.Ajouter_Action();
+                   
                     if (cbAjout.Checked)
                     {
+                        a.Ajouter_Action();
                         inMoney.Add();
                     }
                     else
                     {
+                        a.Ajouter_Action();
                         outMoney.Withdraw();
                     }
                     Response.Redirect("EventPage.aspx");

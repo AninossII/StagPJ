@@ -30,12 +30,12 @@ namespace StagPj
         {
             U = new Utilisateur();
             con = new Connexion();
-            
+
+            U.Email = tbEmail.Text;
+            U.Password = tbPass.Text;
+
             if (U.LogIn().Equals("50500##Connected"))
             {
-                U.Email = tbEmail.Text;
-                U.Password = tbPass.Text;
-
                 HttpCookie httpCookie = new HttpCookie("logIn");
                 if (cbReamember.Checked)
                 {
@@ -48,6 +48,7 @@ namespace StagPj
                 }
                 else
                 {
+                    U.Email = null;
                     tbEmail.Text = "";
                     tbPass.Text = "";
                 }

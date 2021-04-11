@@ -29,7 +29,7 @@
                         <asp:TextBox ID="tbPass" runat="server"></asp:TextBox>
                     </li>
                     <li>
-                        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click"/>
+                        <asp:Button ID="Button1" runat="server" Text="Log In" OnClick="Button1_Click"/>
                     </li>
                     <li>
                         <asp:CheckBox ID="cbReamember" runat="server" text="Remember me"/>

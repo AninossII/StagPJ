@@ -39,7 +39,9 @@ namespace StagPj
             con = new SqlConnection(Sqlstring);
             //con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;            
         }
-        
+
+        ////////////// ----- Show table ----- //////////////
+
         public DataTable showDataTable(string Sqlcommand)
         {
             con.Open();
@@ -55,7 +57,9 @@ namespace StagPj
             
             return _dataTable;
         }
-        
+
+        ////////////// ----- Show table Using Proc ID ----- //////////////
+
         public DataTable showParamDataTable(string Sqlcommand)
         {
             con.Open();
@@ -222,8 +226,6 @@ namespace StagPj
 
         public string LogIn(string email, string password)
         {
-            U = new Utilisateur();
-
             con.Open();
 
             _cmd = new SqlCommand("dbo.User_Login", con);
