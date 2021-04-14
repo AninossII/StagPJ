@@ -13,17 +13,8 @@ namespace StagPj
         public void Withdraw()
         {
             con = new Connexion();
-            con.Withdraw_Money(Montant);
+            con.Withdraw_Money(-Montant);
         }
-
-        /*public Out() : base()
-        {
-            cat = new Category();
-        }
-        public float losses()
-        {
-            
-            return 0;
-        }*/
+        
     }
 }

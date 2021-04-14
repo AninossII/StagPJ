@@ -5,14 +5,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Drawing;
 
 namespace StagPj.Pages
 {
     public partial class HomePage : System.Web.UI.Page
     {
         private DataTable comptesTable;
+
         private Connexion con;
         private Utilisateur u;
+        private Action a;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +24,6 @@ namespace StagPj.Pages
 
             if (u.ID != null)
             {
-
             }
             else if (Request.Cookies["logIn"] != null)
             {
@@ -37,7 +39,6 @@ namespace StagPj.Pages
             comptesTable = con.showDataTable("select * from dbo.Comptes where U_id = '"+u.ID+"'");
 
             lbCompt.Controls.Add(new LiteralControl("<div class=" + "comptsBox" + ">"));
-
             int index = 0;
             foreach (DataRow rowCompte in comptesTable.Rows)
             {
@@ -52,9 +53,11 @@ namespace StagPj.Pages
             }
             lbCompt.Controls.Add(new LiteralControl("</div>"));
 
-            lbCompt.Controls.Add(new LiteralControl("<div>"));
+            lbDep.Text = con.StaticWithdrawMoney();
+            lbDep.ForeColor = Color.Red;
 
-            lbCompt.Controls.Add(new LiteralControl("</div>"));
+            lbRess.Text = con.StaticAddMoney();
+            lbRess.ForeColor = Color.CadetBlue;
         }
 
         void SponeContent(string name, string htmlString)
@@ -66,6 +69,18 @@ namespace StagPj.Pages
             lbCompt.Controls.Add(lbName);
             lbCompt.Controls.Add(new LiteralControl(htmlString));
 
-        }   
+        }
+
+        protected void btnWid_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NewEventPage.aspx");
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            a = new Action();
+            a.EventType = "+";
+            Response.Redirect("NewEventPage.aspx");
+        }
     }
 }

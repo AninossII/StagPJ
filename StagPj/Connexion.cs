@@ -310,5 +310,40 @@ namespace StagPj
 
             return _cmd.Parameters["@responseMessage"].Value.ToString();
         }
+
+        ////////////// ----- WidrawMoney ----- //////////////
+
+            // -- Add Money --
+            public string StaticAddMoney()
+            {
+                U = new Utilisateur();
+                
+                con.Open();
+
+                _cmd = new SqlCommand("exec dbo.statistiques_Added_Money '"+U.ID+"'", con);
+                
+                string text = _cmd.ExecuteScalar().ToString();
+
+                con.Close();
+
+                return text;
+            }
+
+            // -- Withdraw Money --
+            public string StaticWithdrawMoney()
+            {
+                U = new Utilisateur();
+
+                con.Open();
+
+                _cmd = new SqlCommand("exec dbo.statistiques_Withdraw_Money '" + U.ID + "'", con);
+
+                string text = _cmd.ExecuteScalar().ToString();
+
+                con.Close();
+
+                return text;
+            }
+
     }
 }

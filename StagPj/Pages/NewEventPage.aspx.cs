@@ -45,6 +45,11 @@ namespace StagPj
                 Response.Redirect("Login.aspx");
             }
 
+            if (a.EventType == "+")
+            {
+                cbAjout.Checked = true;
+            }
+
             if (_bMod)
             {
                 dataTable = new DataTable();
@@ -102,6 +107,7 @@ namespace StagPj
                     }
                     else
                     {
+                        a.Montant = float.Parse("-" + a.Montant);
                         a.Ajouter_Action();
                         outMoney.Withdraw();
                     }

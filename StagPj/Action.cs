@@ -14,6 +14,8 @@ namespace StagPj
         private static DateTime time;
         private static float _montant;
         private string designation;
+        private static string _eventType;
+
         public Compte C;
         public Utilisateur utilisateur;
         private Connexion con = new Connexion();
@@ -40,6 +42,12 @@ namespace StagPj
         {
             get { return time; }
             set { time = value; }
+        }
+
+        public string EventType
+        {
+            get { return _eventType; }
+            set { _eventType = value; }
         }
 
         public Action()

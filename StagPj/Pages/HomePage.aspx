@@ -9,6 +9,9 @@
         .comptsBox {
             border: solid 2px gray;
         }
+        .smoney{
+            border: solid 2px gold;
+        }
     </style>
 </head>
 <body>
@@ -18,10 +21,20 @@
         <asp:Label ID="lbCompt" runat="server" Text="Label"></asp:Label>
     
     </div>
-        <asp:Label ID="lbMont" runat="server" Text="Label"></asp:Label>
+        <br/>
+        <div class="smoney">
+            <asp:Label ID="lbMont" runat="server" Text="Depense : "></asp:Label>
+            <asp:Label ID="lbDep" runat="server" Text="Label"></asp:Label>
+            <div>
+                <asp:Label ID="Label2" runat="server" Text="Ressource : "></asp:Label>
+                <asp:Label ID="lbRess" runat="server" Text="Label"></asp:Label>
+            </div>
+        </div>
+
+        <br/>
         <p>
-            <asp:Button ID="btnWid" runat="server" Text="-" Style="margin-right: 10px"/>
-            <asp:Button ID="btnAdd" runat="server" Text="+" />
+            <asp:Button ID="btnWid" runat="server" Text="-" Style="margin-right: 10px" OnClick="btnWid_Click"/>
+            <asp:Button ID="btnAdd" runat="server" Text="+" OnClick="btnAdd_Click" />
         </p>
     </form>
 </body>

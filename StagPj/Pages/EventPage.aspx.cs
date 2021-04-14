@@ -66,14 +66,45 @@ namespace StagPj
         
         void SponeNewEvent(string lbName, string cont, string htmlString,string monSfx)
         {
-            name = lbName;
-
             var Tname = new Label();
             Tname.Text = cont + monSfx;
+            if(lbName == "prixLabel")
+            {
+                if (cont.Contains("-"))
+                {
+                    Tname.ForeColor = Color.Red;
+                }
+                else
+                {
+                    Tname.ForeColor = Color.CadetBlue;
+                }
+            }
 
             timeText.Visible = true;
             timeText.Controls.Add(Tname);
             timeText.Controls.Add(new LiteralControl(htmlString));          
+
+        }
+
+        void SponeNewButton(string btnName, string c_id, string a_id)
+        {
+            var modButton = new Button();
+            modButton.Text = btnName;
+            if (btnName == "X")
+            {
+                modButton.BackColor = Color.Red;
+            }
+            modButton.Click += (s, ef) =>
+            {
+                a = new Action();
+                c = new Compte();
+                c.ID = c_id;
+                a.ID = a_id;
+                Response.Redirect("NewEventPage.aspx");
+            };
+            timeText.Visible = true;
+            timeText.Controls.Add(modButton);
+            timeText.Controls.Add(new LiteralControl(" "));
 
         }
 
@@ -121,37 +152,10 @@ namespace StagPj
                     string a_id = dataRow[0].ToString();
                     string c_id = dataRow[4].ToString();
 
+                    SponeNewButton("Modifier", c_id, a_id);
+                    SponeNewButton("X", c_id, a_id);
 
-                    var modButton = new Button();
-                    modButton.Text = "Modifier";
-                    modButton.Click += (s, ef) =>
-                    {
-                        a = new Action();
-                        c = new Compte();
-                        c.ID = c_id;
-                        a.ID = a_id;
-                        Response.Redirect("NewEventPage.aspx");
-                    };
-                    timeText.Visible = true;
-                    timeText.Controls.Add(modButton);
-                    timeText.Controls.Add(new LiteralControl(" "));
-
-                    var supButton = new Button();
-                    supButton.Text = "X";
-                    supButton.BackColor = Color.Red;
-                    supButton.Click += (s, ef) =>
-                    {
-                        a = new Action();
-                        c = new Compte();
-                        c.ID = c_id;
-                        a.ID = a_id;
-                        a.Suppretion_Action();
-                        Response.Redirect("EventPage.aspx");
-                    };
-                    timeText.Visible = true;
-                    timeText.Controls.Add(supButton);
-
-                    timeText.Controls.Add(new LiteralControl(" "));
+                    
                     timeText.Controls.Add(new LiteralControl("</div>"));
                     index++;
                 }

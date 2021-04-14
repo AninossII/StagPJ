@@ -9,27 +9,17 @@ namespace StagPj
 {
     public class Compte
     {
-        private static string id;
+        private static string _id;
         private string nom;
         private DateTime datecreation;
         private float c_montant;
-        public Connexion C;
-        public Utilisateur utilisateur;
-        public Compte()
-        {
-            utilisateur = new Utilisateur();
-            C = new Connexion();
-        }
-        public Compte(string nom, float c_montant)
-        {
-            this.nom = nom;
-            this.c_montant = c_montant;
 
-        }
+        public Connexion c;
+
         public string ID
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
         public string Nom
         {
@@ -46,6 +36,18 @@ namespace StagPj
             get { return c_montant; }
             set { c_montant = value; }
         }
+
+        public Compte()
+        {
+        }
+
+        public Compte(string nom, float c_montant)
+        {
+            this.nom = nom;
+            this.c_montant = c_montant;
+
+        }
+        
         public string Ajouter_Compte(string Nom, float C_Montant)
         {
             new Connexion();

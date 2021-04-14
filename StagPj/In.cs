@@ -15,15 +15,5 @@ namespace StagPj
             con = new Connexion();
             con.Add_Money(Montant);
         }
-
-        /*public Sour sour;
-        public In() : base()
-        {
-            sour = new Sour();
-        }
-        public float Add()
-        {
-            return 0;
-        }*/
     }
 }
