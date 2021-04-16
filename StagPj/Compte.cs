@@ -13,8 +13,10 @@ namespace StagPj
         private string nom;
         private DateTime datecreation;
         private float c_montant;
+        private SqlCommand cmd;
 
-        public Connexion c;
+        public Connexion con;
+        private Utilisateur u;
 
         public string ID
         {
@@ -39,20 +41,54 @@ namespace StagPj
 
         public Compte()
         {
+            con = new Connexion();
         }
 
         public Compte(string nom, float c_montant)
         {
             this.nom = nom;
             this.c_montant = c_montant;
-
         }
-        
-        public string Ajouter_Compte(string Nom, float C_Montant)
+
+        ////////////// ----- Compte ID ----- //////////////
+
+        public string ComptId(string id)
         {
-            new Connexion();
-            Connexion.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.I_Comptes", Connexion.Con);
+            u = new Utilisateur();
+
+            con.Con.Open();
+
+            cmd = new SqlCommand("select dbo.Get_name_from_ID('" + id + "')", con.Con);
+
+            var idExecuteScalar = cmd.ExecuteScalar();
+
+            con.Con.Close();
+
+            return idExecuteScalar.ToString();
+        }
+
+        /*public string ComptIdbyName(string cbName)
+        {
+            U = new Utilisateur();
+            C = new Compte();
+            _con.Open();
+
+            _cmd = new SqlCommand("SELECT dbo.Get_ID_from_nom_U_ID('"++"','"+U.ID+"')", _con);
+
+            var idExecuteScalar = _cmd.ExecuteScalar();
+
+            _con.Close();
+
+            return idExecuteScalar.ToString();
+        }*/
+
+        ////////////// ----- Ajouter ----- //////////////
+
+        public string Ajouter(string Nom, float C_Montant)
+        {
+            con.Con.Open();
+
+            SqlCommand cmd = new SqlCommand("dbo.I_Comptes", con.Con);
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
@@ -70,15 +106,17 @@ namespace StagPj
 
             cmd.ExecuteNonQuery();
 
-            Connexion.Con.Close();
+            con.Con.Close();
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
         }
-        public string modifiere_Compte(string Nom, float C_Montant)
+
+        ////////////// ----- Modifiere ----- //////////////
+
+        public string Modifier(string Nom, float C_Montant)
         {
-            new Connexion();
-            Connexion.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.U_Comptes", Connexion.Con);
+            con.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.U_Comptes", con.Con);
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
@@ -96,15 +134,17 @@ namespace StagPj
 
             cmd.ExecuteNonQuery();
 
-            Connexion.Con.Close();
+            con.Con.Close();
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
         }
-        public string suppretion_Compte(string id )
+
+        ////////////// ----- Suppretion ----- //////////////
+
+        public string Suppretion(string id )
         {
-            new Connexion();
-            Connexion.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.D_Comptes", Connexion.Con);
+            con.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.D_Comptes", con.Con);
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -118,7 +158,7 @@ namespace StagPj
 
             cmd.ExecuteNonQuery();
 
-            Connexion.Con.Close();
+            con.Con.Close();
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
         }

@@ -11,17 +11,16 @@ namespace StagPj
 {
     public partial class NewEventPage : System.Web.UI.Page
     {
+        
+        private Connexion con;
+        private Utilisateur u;
+        private Compte c;
         private Action a;
         private In inMoney;
         private Out outMoney;
 
-        private Connexion con;
-        private Utilisateur u;
-        private Compte c;
-
         private DataTable dataTable;
         private static bool _bMod = true;
-        private static string coptName;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -64,12 +63,12 @@ namespace StagPj
             }
 
             if (a.ID != null && tbPrix.Text == String.Empty)
-            { 
+            {
                 dataTable = new DataTable();
                 dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + a.ID + "'");
                 
                 tbPrix.Text = dataTable.Rows[0][3].ToString().Trim();
-                tbDes.Text = dataTable.Rows[0][2].ToString().ToString().Trim();
+                tbDes.Text = dataTable.Rows[0][2].ToString().Trim();
                 dlCompts.Items.FindByValue(c.ID).Selected = true;
                 btnEvent.Text = "Modifier Event";
                 _bMod = false;
@@ -78,7 +77,7 @@ namespace StagPj
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EventPage.aspx");
+            Response.Redirect("HomePage.aspx");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -102,33 +101,33 @@ namespace StagPj
                    
                     if (cbAjout.Checked)
                     {
-                        a.Ajouter_Action();
+                        a.Ajouter();
                         inMoney.Add();
                     }
                     else
                     {
                         a.Montant = float.Parse("-" + a.Montant);
-                        a.Ajouter_Action();
+                        a.Ajouter();
                         outMoney.Withdraw();
                     }
-                    Response.Redirect("EventPage.aspx");
+                    Response.Redirect("HomePage.aspx");
                 }
                 else
                 {
                     a.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
-                    a.Modifiere_Action();
+                    a.Modifier();
 
-                    Response.Redirect("EventPage.aspx");
+                    Response.Redirect("HomePage.aspx");
                 }
             }
             else
             {
                 a.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
                 
-                a.Suppretion_Action();
-                a.Ajouter_Action();
+                a.Suppretion();
+                a.Ajouter();
 
-                Response.Redirect("EventPage.aspx");
+                Response.Redirect("HomePage.aspx");
             }
 
         }

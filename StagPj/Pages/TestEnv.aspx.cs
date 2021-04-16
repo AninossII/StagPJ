@@ -16,23 +16,13 @@ namespace StagPj.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             u = new Utilisateur();
+            con = new Connexion();
 
             u.Email = Request.Cookies["logIn"]["Email"];
             u.Password = Request.Cookies["logIn"]["Password"];
             u.LogIn();
             Response.Write(u.Email);
-
-            new Connexion();
-
-            Connexion.Con.Open();
             
-            cmd = new SqlCommand("select dbo.Get_ID_Utilisateur('" + u.Email +"')", Connexion.Con);
-
-            var excmtReader = cmd.ExecuteScalar();
-
-            Connexion.Con.Close();
-            
-            Response.Write(excmtReader.ToString());
         }
     }
 }

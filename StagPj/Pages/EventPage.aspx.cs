@@ -13,13 +13,13 @@ namespace StagPj
 {
     public partial class HomePage : System.Web.UI.Page
     {
-        private Action a = new Action();
+        private Action a;
         private Compte c;
         private Utilisateur u;
         private Connexion con;
 
         private string name;
-        private static string selectDay;
+        private static string _selectDay;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,13 +52,13 @@ namespace StagPj
             calDay.BackColor = Color.White;
 
             calDay.SelectedDayStyle.BackColor = col;
-            if (selectDay == null)
+            if (_selectDay == null)
             {
                 calDay.SelectedDate = DateTime.Today;
             }
             else
             {
-                calDay.SelectedDate = DateTime.Parse(selectDay);
+                calDay.SelectedDate = DateTime.Parse(_selectDay);
             }
             SponingEvents();
             
@@ -128,6 +128,9 @@ namespace StagPj
 
         private void SponingEvents()
         {
+            con = new Connexion();
+            c = new Compte();
+
             int index = 0;
             DataTable actionTable = ActionTable();
 
@@ -135,9 +138,9 @@ namespace StagPj
             {
                 
                 string _date = dataRow["Time"].ToString().Split(' ')[0];
-                selectDay = calDay.SelectedDate.ToShortDateString();
-                con = new Connexion();
-                if (_date == selectDay)
+                _selectDay = calDay.SelectedDate.ToShortDateString();
+                
+                if (_date == _selectDay)
                 {
                     timeText.Controls.Add(new LiteralControl("<div class=" + "Event" + ">"));
 
@@ -146,7 +149,7 @@ namespace StagPj
 
                     SponeNewEvent("prixLabel", dataRow["Prix"].ToString(), " ", " DH");
                     SponeNewEvent("timeLabel", _time, " ", "");
-                    SponeNewEvent("acountLabel", con.ComptId(dataRow["C_id"].ToString()), "</br>", "");
+                    SponeNewEvent("acountLabel", c.ComptId(dataRow["C_id"].ToString()), "</br>", "");
                     SponeNewEvent("desLabel", dataRow["Designation"].ToString(), "</br></br>", "");
 
                     string a_id = dataRow[0].ToString();

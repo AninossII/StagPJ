@@ -9,27 +9,28 @@ namespace StagPj
 {
     public class Utilisateur
     {
-        private static string id;
-        private static string email;
+        private static string _id;
+        private static string _email;
         private string password;
         private string nom;
         private string prenom;
         private DateTime datenes;
         private DateTime dateins;
         private char genre;
+        private SqlCommand cmd;
 
         private  Connexion con;
         
         public string ID
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         public string Email
         {
-            get { return email; }
-            set { email = value; }
+            get { return _email; }
+            set { _email = value; }
         }
 
         public string Password
@@ -70,6 +71,7 @@ namespace StagPj
 
         public Utilisateur()
         {
+            con = new Connexion();
         }
 
         public Utilisateur(string email, string pswrd, string nom, string prnm, DateTime datenes, DateTime dateins, char genre)
@@ -81,11 +83,27 @@ namespace StagPj
             this.genre = genre;
         }
 
+        ////////////// ----- User ID ----- //////////////
+
+        public string UserId()
+        {
+            con.Con.Open();
+            
+            cmd = new SqlCommand("select dbo.Get_ID_Utilisateur('" + _email + "')", con.Con);
+
+            var executeScalar = cmd.ExecuteScalar();
+
+            con.Con.Close();
+
+            return executeScalar.ToString();
+        }
+
+        ////////////// ----- SingUp ----- //////////////
+
         public string SingUp(string Email, string Password, string Nom, string Prenom, DateTime Datenes,  char Genres)
         {
-            new Connexion();
-            Connexion.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.I_Utilisateur", Connexion.Con);
+            con.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.I_Utilisateur", con.Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
             cmd.Parameters.Add("@Password", SqlDbType.Char, 20);
@@ -107,20 +125,40 @@ namespace StagPj
             cmd.Parameters["@Genre"].Value = Genre;
             cmd.ExecuteNonQuery();
 
-            Connexion.Con.Close();
+            con.Con.Close();
 
             return cmd.Parameters["@responseMessage"].Value.ToString();
         }
 
+        ////////////// ----- LogIn ----- //////////////
+
         public string LogIn()
         {
-            con = new Connexion();
-            
-            string loginMessage = con.LogIn(email, password).Trim();
+            con.Con.Open();
+
+            cmd = new SqlCommand("dbo.User_Login", con.Con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
+            cmd.Parameters.Add("@password", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters["@Email"].Value = _email;
+            cmd.Parameters["@password"].Value = password;
+
+            cmd.ExecuteNonQuery();
+
+            con.Con.Close();
+
+            string loginMessage = cmd.Parameters["@responseMessage"].Value.ToString().Trim();
+
             if (loginMessage == "50500##Connected")
             {
-                id = con.UserId();
+                _id = UserId();
             }
+
             return loginMessage;
         }
     }
