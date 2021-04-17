@@ -19,7 +19,6 @@ namespace StagPj
         private DataTable _dataTable;
 
         private static SqlConnection _con;
-        
         private Utilisateur u;
 
         public SqlConnection Con
@@ -34,7 +33,6 @@ namespace StagPj
         {
             Sqlstring = "Data Source=SQL5103.site4now.net;Initial Catalog=DB_A71E52_db01;User Id=DB_A71E52_db01_admin;Password=db01.1234";
             _con = new SqlConnection(Sqlstring);
-            //_con.ConnectionString = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;            
         }
 
         ////////////// ----- Show table ----- //////////////
@@ -58,7 +56,7 @@ namespace StagPj
 
         ////////////// ----- Show table Using Proc ID ----- //////////////
 
-        public DataTable showParamDataTable(string Sqlcommand)
+        public DataTable showParamDataTable(string Sqlcommand,string idName)
         {
             u = new Utilisateur();
 
@@ -67,9 +65,9 @@ namespace StagPj
             SqlCommand _cmd = new SqlCommand(Sqlcommand, _con);
             _cmd.CommandType = CommandType.StoredProcedure;
 
-            _cmd.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
+            _cmd.Parameters.Add(idName, SqlDbType.UniqueIdentifier);
 
-            _cmd.Parameters["@ID"].Value =Guid.Parse(u.ID);
+            _cmd.Parameters[idName].Value =Guid.Parse(u.ID);
 
             _dataTable = new DataTable();
             _cmd.ExecuteNonQuery();

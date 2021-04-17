@@ -13,6 +13,7 @@ namespace StagPj.Pages
         private Utilisateur u;
         private Connexion con;
         private DataTable dataTable;
+        private DataTable transTable;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,6 +37,7 @@ namespace StagPj.Pages
             if (u.ID != null)
             {
                 GetInfo();
+                GetComptsInfo();
             }
             else
             {
@@ -50,9 +52,9 @@ namespace StagPj.Pages
 
             dataTable = new DataTable();
 
-            dataTable  = con.showParamDataTable("dbo.Get_Info_Profile");
+            transTable = con.showParamDataTable("dbo.Get_Info_Profile","@ID");
 
-            foreach (DataRow tRow in dataTable.Rows)
+            foreach (DataRow tRow in transTable.Rows)
             {
                 lbuserName.Text = tRow[0].ToString();
                 lbdateInsc.Text = DateTime.Parse(tRow[1].ToString()).ToString("MM/dd/yyyy");
@@ -72,6 +74,56 @@ namespace StagPj.Pages
 
                 lbtotal.Text = tRow[4].ToString();
             }
+        }
+
+        void GetComptsInfo()
+        {
+            dataTable = con.showParamDataTable("dbo.statistiques","@id_U");
+
+            lbCompt.Controls.Add(new LiteralControl("<div class=" + "comptsBox" + ">"));
+            int index = 0;
+            foreach (DataRow rowCompte in dataTable.Rows)
+            {
+                SponeContent(rowCompte["Nom"].ToString(), ":  ");
+                SponeContent(rowCompte["C_Montant"].ToString(), "</br>");
+
+
+                transTable = con.showDataTable("select * from Action where C_id = '" + rowCompte["ID"].ToString() +
+                                               "' order by Time DESC");
+
+                lbCompt.Controls.Add(new LiteralControl("<div class=" + "transbox" + ">"));
+                int index2 = 0;
+                foreach (DataRow rowTrans in transTable.Rows)
+                {
+                    SponeContent(rowTrans["Prix"].ToString(), ":  ");
+                    SponeContent(rowTrans["Designation"].ToString(), "</br>");
+                    
+                    index2++;
+                    if (index2 > 2)
+                    {
+                        break;
+                    }
+                }
+                lbCompt.Controls.Add(new LiteralControl("</div>"));
+
+                index++;
+                if (index > 2)
+                {
+                    break;
+                }
+            }
+            lbCompt.Controls.Add(new LiteralControl("</div>"));
+        }
+
+        void SponeContent(string name, string htmlString)
+        {
+            var lbName = new Label();
+            lbName.Text = name;
+
+            lbCompt.Visible = true;
+            lbCompt.Controls.Add(lbName);
+            lbCompt.Controls.Add(new LiteralControl(htmlString));
+
         }
     }
 }

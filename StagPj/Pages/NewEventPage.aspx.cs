@@ -52,7 +52,7 @@ namespace StagPj
             if (_bMod)
             {
                 _dataTable = new DataTable();
-                _dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
+                _dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili","@ID");
 
                 dlCompts.DataSource = _dataTable;
                 dlCompts.DataBind();

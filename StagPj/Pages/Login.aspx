@@ -28,7 +28,7 @@
                         <asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
                     </li>
                     <li>
-                        <asp:TextBox ID="tbPass" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbPass" runat="server" type="password"></asp:TextBox>
                     </li>
                     <li>
                         <asp:Button ID="Button1" runat="server" Text="Log In" OnClick="Button1_Click"/>

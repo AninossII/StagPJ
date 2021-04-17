@@ -2,7 +2,7 @@
     text-align: center;
 }
 body{
-    background-color:orangered;
+   
 }
 .image-ptofil {
 }
@@ -26,4 +26,10 @@ body{
 .op_item{
     display:inline;
     margin: 1% 3%;
+}
+
+.transbox {
+    border-top: solid 2px gold;
+    margin: 0 40vw 0 40vw;
+    padding: 8px 0 5px 0;
 }

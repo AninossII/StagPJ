@@ -52,8 +52,7 @@
            <div class="last_Transaction">
                <h4>last Transaction</h4>
                <div class="transaction">
-                   <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                   <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                   <asp:Label ID="lbCompt" runat="server" Text="Label"></asp:Label>
                </div>
               
            </div>    

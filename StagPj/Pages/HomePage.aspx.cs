@@ -36,7 +36,7 @@ namespace StagPj.Pages
                 Response.Redirect("Login.aspx");
             }
             
-            comptesTable = con.showDataTable("select * from dbo.Comptes where U_id = '"+u.ID+"'");
+            comptesTable = con.showParamDataTable("dbo.statistiques","@id_U");
 
             lbCompt.Controls.Add(new LiteralControl("<div class=" + "comptsBox" + ">"));
             int index = 0;
