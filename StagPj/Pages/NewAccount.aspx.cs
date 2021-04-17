@@ -15,7 +15,6 @@ namespace StagPj.Pages
         private Utilisateur u;
 
         private DataTable dataTable;
-        private static Boolean _bMod = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +37,7 @@ namespace StagPj.Pages
                 Response.Redirect("Login.aspx");
             }
 
-            if (c.ID != null && _bMod)
+            if (c.ID != null && tbMontant.Text == string.Empty)
             {
                 dataTable = new DataTable();
                 dataTable = con.showDataTable("select * from Comptes where ID = '" + c.ID + "' and U_id = '" + u.ID + "'");
@@ -47,9 +46,7 @@ namespace StagPj.Pages
                     tbMontant.Text = dataRow["C_Montant"].ToString().Trim();
                     tbNom.Text = dataRow["Nom"].ToString().Trim();
                 }
-
                 btnAccount.Text = "Modifier Account";
-                _bMod = false;
             }
 
         }
@@ -66,7 +63,7 @@ namespace StagPj.Pages
             else
             {
                 c = new Compte(tbNom.Text, float.Parse(tbMontant.Text));
-                c.Modifier();
+                c.Modifier().Trim();
                 Response.Redirect("Accounts.aspx");
             }
         }
