@@ -16,6 +16,7 @@ namespace StagPj
         private Compte c;
         private Utilisateur u;
 
+
         private DataTable dataTable;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -37,8 +38,6 @@ namespace StagPj
                 Response.Redirect("Login.aspx");
             }
             
-            Label4.Text = "1" + "Event";
-
             timeText.Visible = false;
             ShowAccounts();
 
@@ -104,9 +103,19 @@ namespace StagPj
             {
                 u = new Utilisateur();
                 c = new Compte();
+
                 c.ID = c_id;
                 u.ID = u_id;
-                Response.Redirect("NewEventPage.aspx");
+
+                if (btnName == "X")
+                {
+                    c.Suppretion();
+                    Response.Redirect("Accounts.aspx");
+                }
+                else
+                {
+                    Response.Redirect("NewAccount.aspx");
+                }
             };
             timeText.Visible = true;
             timeText.Controls.Add(modButton);
@@ -129,6 +138,8 @@ namespace StagPj
             int index = 0;
             DataTable accountsTable = AccountsTable();
 
+            lbaccountNum.Text = accountsTable.Rows.Count + " Account";
+
             con = new Connexion();
 
             foreach (DataRow dataRow in accountsTable.Rows)
@@ -148,6 +159,11 @@ namespace StagPj
                 index++;
             }
 
+        }
+        
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NewAccount.aspx");
         }
     }
 }

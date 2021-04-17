@@ -106,7 +106,8 @@
     <Content Include="Pages\EventPage.aspx" />
     <Content Include="Pages\HomePage.aspx" />
     <Content Include="Pages\Login.aspx" />
-    <Content Include="Pages\NewEventPage.aspx" />
+    <Content Include="Pages\NewAccount.aspx" />
+    <Content Include="Pages\NewEvent.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -168,12 +169,19 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewEvent.cs" />
-    <Compile Include="Pages\NewEventPage.aspx.cs">
-      <DependentUpon>NewEventPage.aspx</DependentUpon>
+    <Compile Include="Pages\NewAccount.aspx.cs">
+      <DependentUpon>NewAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\NewEventPage.aspx.designer.cs">
-      <DependentUpon>NewEventPage.aspx</DependentUpon>
+    <Compile Include="Pages\NewAccount.aspx.designer.cs">
+      <DependentUpon>NewAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewEvent.aspx.cs">
+      <DependentUpon>NewEvent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NewEvent.aspx.designer.cs">
+      <DependentUpon>NewEvent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Out.cs" />
     <Compile Include="Pages\Profil.aspx.cs">

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StagPj {
+namespace StagPj.Pages {
     
     
-    public partial class Accounts {
+    public partial class NewAccount {
         
         /// <summary>
         /// form1 control.
@@ -22,39 +22,39 @@ namespace StagPj {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lbtitle control.
+        /// btnback control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbtitle;
+        protected global::System.Web.UI.WebControls.Button btnback;
         
         /// <summary>
-        /// lbaccountNum control.
+        /// tbNom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbaccountNum;
+        protected global::System.Web.UI.WebControls.TextBox tbNom;
         
         /// <summary>
-        /// timeText control.
+        /// tbMontant control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label timeText;
+        protected global::System.Web.UI.WebControls.TextBox tbMontant;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
+        protected global::System.Web.UI.WebControls.Button btnAccount;
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewEventPage.aspx.cs" Inherits="StagPj.NewEventPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewEvent.aspx.cs" Inherits="StagPj.NewEventPage" %>
 
 <!DOCTYPE html>
 
