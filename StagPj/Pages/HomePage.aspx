@@ -31,6 +31,12 @@
             <asp:Button ID="btnWid" runat="server" Text="-" Style="margin-right: 10px" OnClick="btnWid_Click"/>
             <asp:Button ID="btnAdd" runat="server" Text="+" OnClick="btnAdd_Click" />
         </p>
+        <p>
+            <asp:Button ID="btnhomePage" runat="server" Text="Home" Style="margin-right: 10px" OnClick="btnhomePage_Click"/>
+            <asp:Button ID="btneventPage" runat="server" Text="Event" Style="margin-right: 10px" OnClick="btneventPage_Click"/>
+            <asp:Button ID="btnaccountPage" runat="server" Text="Accounts" Style="margin-right: 10px" OnClick="btnaccountPage_Click"/>
+            <asp:Button ID="btnprofilgPage" runat="server" Text="Profil" Style="margin-right: 10px" OnClick="btnprofilgPage_Click"/>
+        </p>
     </form>
 </body>
 </html>

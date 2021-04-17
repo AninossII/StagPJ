@@ -181,5 +181,31 @@ namespace StagPj
             SponingEvents();
             Response.Redirect("EventPage.aspx");
         }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NewAccount.aspx");
+        }
+
+        protected void btnhomePage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HomePage.aspx");
+        }
+
+        protected void btneventPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EventPage.aspx");
+        }
+
+        protected void btnaccountPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Accounts.aspx");
+        }
+
+        protected void btnprofilgPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profil.aspx");
+        }
+
     }
 }

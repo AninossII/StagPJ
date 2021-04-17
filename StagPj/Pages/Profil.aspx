@@ -66,6 +66,13 @@
             <li class="op_item"><img src="#" alt="para" /></li>
         </ul>--%>
         </div>
+       
+       <p>
+           <asp:Button ID="btnhomePage" runat="server" Text="Home" Style="margin-right: 10px" OnClick="btnhomePage_Click"/>
+           <asp:Button ID="btneventPage" runat="server" Text="Event" Style="margin-right: 10px" OnClick="btneventPage_Click"/>
+           <asp:Button ID="btnaccountPage" runat="server" Text="Accounts" Style="margin-right: 10px" OnClick="btnaccountPage_Click"/>
+           <asp:Button ID="btnprofilgPage" runat="server" Text="Profil" Style="margin-right: 10px" OnClick="btnprofilgPage_Click"/>
+       </p>
     </form>
 </body>
 </html>

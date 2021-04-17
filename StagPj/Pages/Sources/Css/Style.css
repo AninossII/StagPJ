@@ -1,4 +1,8 @@
-﻿.comptsBox {
+﻿form{
+    width: 50%;
+}
+
+.comptsBox {
     border: solid 2px gray;
 }
 .smoney{
