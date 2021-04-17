@@ -1,2 +1,6 @@
-﻿body {
+﻿.comptsBox {
+    border: solid 2px gray;
+}
+.smoney{
+    border: solid 2px gold;
 }

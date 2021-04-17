@@ -98,38 +98,6 @@ namespace StagPj
             return executeScalar.ToString();
         }
 
-        ////////////// ----- SingUp ----- //////////////
-
-        public string SingUp(string Email, string Password, string Nom, string Prenom, DateTime Datenes,  char Genres)
-        {
-            con.Con.Open();
-            SqlCommand cmd = new SqlCommand("dbo.I_Utilisateur", con.Con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
-            cmd.Parameters.Add("@Password", SqlDbType.Char, 20);
-            cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
-            cmd.Parameters.Add("@Prenom", SqlDbType.Char, 20);
-            cmd.Parameters.Add("@Datenes", SqlDbType.Date);
-            cmd.Parameters.Add("@Dateins", SqlDbType.DateTime);
-            cmd.Parameters.Add("@Genre", SqlDbType.Char);
-
-            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
-            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
-
-            cmd.Parameters["@Email"].Value = Email;
-            cmd.Parameters["@Password"].Value = Password;
-            cmd.Parameters["@Nom"].Value = Nom;
-            cmd.Parameters["@Prenom"].Value = Prenom;
-            cmd.Parameters["@Datenes"].Value = Datenes;
-            cmd.Parameters["@Dateins"].Value = DateTime.Now;
-            cmd.Parameters["@Genre"].Value = Genre;
-            cmd.ExecuteNonQuery();
-
-            con.Con.Close();
-
-            return cmd.Parameters["@responseMessage"].Value.ToString();
-        }
-
         ////////////// ----- LogIn ----- //////////////
 
         public string LogIn()
@@ -160,6 +128,38 @@ namespace StagPj
             }
 
             return loginMessage;
+        }
+
+        ////////////// ----- SingUp ----- //////////////
+
+        public string SingUp()
+        {
+            con.Con.Open();
+            SqlCommand cmd = new SqlCommand("dbo.I_Utilisateur", con.Con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Email", SqlDbType.Char, 150);
+            cmd.Parameters.Add("@Password", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@Nom", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@Prenom", SqlDbType.Char, 20);
+            cmd.Parameters.Add("@Datenes", SqlDbType.Date);
+            cmd.Parameters.Add("@Dateins", SqlDbType.DateTime);
+            cmd.Parameters.Add("@Genre", SqlDbType.Char);
+
+            cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 256);
+            cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters["@Email"].Value = _email;
+            cmd.Parameters["@Password"].Value = password;
+            cmd.Parameters["@Nom"].Value = nom;
+            cmd.Parameters["@Prenom"].Value = prenom;
+            cmd.Parameters["@Datenes"].Value = datenes;
+            cmd.Parameters["@Dateins"].Value = DateTime.Now;
+            cmd.Parameters["@Genre"].Value = genre;
+            cmd.ExecuteNonQuery();
+
+            con.Con.Close();
+
+            return cmd.Parameters["@responseMessage"].Value.ToString();
         }
     }
 }

@@ -6,7 +6,9 @@
 <head runat="server">
     <title></title>
     <link href="Sources/Css/StyleSheet_Login.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="Sources/Css/Style.css"/>
+    <link rel="stylesheet" href="Sources/Css/normalize.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 </head>
 <body>
     <form id="form1" runat="server">

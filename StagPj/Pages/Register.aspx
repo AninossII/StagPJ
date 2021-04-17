@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" href="Sources/Css/Style.css"/>
+    <link rel="stylesheet" href="Sources/Css/normalize.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,11 +23,11 @@
         </p>
         <p>
             <asp:Label ID="paswored" runat="server" Text="Paswored"></asp:Label>
-            <asp:TextBox ID="tpswrd" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tpswrd" runat="server" type="password"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="conpasswrd" runat="server" Text="Converm Password"></asp:Label>
-            <asp:TextBox ID="tconpsswrd" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tconpsswrd" runat="server" type="password"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="datenis" runat="server" Text="Date ness"></asp:Label>

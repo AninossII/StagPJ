@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="Sources/Css/Style.css"/>
+    <link rel="stylesheet" href="Sources/Css/normalize.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 
 </head>

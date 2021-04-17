@@ -86,7 +86,7 @@ namespace StagPj
 
         }
 
-        void SponeNewButton(string btnName, string c_id, string a_id)
+        void SponeNewButton(string pageName, string btnName, string c_id, string a_id)
         {
             var modButton = new Button();
             modButton.Text = btnName;
@@ -100,7 +100,11 @@ namespace StagPj
                 c = new Compte();
                 c.ID = c_id;
                 a.ID = a_id;
-                Response.Redirect("NewEventPage.aspx");
+                if (btnName == "X")
+                {
+                    a.Suppretion();
+                }
+                Response.Redirect(pageName);
             };
             timeText.Visible = true;
             timeText.Controls.Add(modButton);
@@ -155,8 +159,8 @@ namespace StagPj
                     string a_id = dataRow[0].ToString();
                     string c_id = dataRow[4].ToString();
 
-                    SponeNewButton("Modifier", c_id, a_id);
-                    SponeNewButton("X", c_id, a_id);
+                    SponeNewButton("NewEventPage.aspx", "Modifier", c_id, a_id);
+                    SponeNewButton("EventPage.aspx", "X", c_id, a_id);
 
                     
                     timeText.Controls.Add(new LiteralControl("</div>"));

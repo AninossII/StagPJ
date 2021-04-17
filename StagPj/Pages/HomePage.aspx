@@ -5,14 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style>
-        .comptsBox {
-            border: solid 2px gray;
-        }
-        .smoney{
-            border: solid 2px gold;
-        }
-    </style>
+    <link rel="stylesheet" href="Sources/Css/Style.css"/>
+    <link rel="stylesheet" href="Sources/Css/normalize.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 </head>
 <body>
     <form id="form1" runat="server">

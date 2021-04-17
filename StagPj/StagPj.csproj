@@ -122,6 +122,7 @@
   <ItemGroup>
     <Content Include="Pages\Profil.aspx" />
     <Content Include="Pages\Register.aspx" />
+    <Content Include="Pages\Sources\Css\normalize.css" />
     <Content Include="Pages\Sources\Css\Style.css" />
     <Content Include="Pages\Sources\Css\StyleSheet_Login.css" />
     <Content Include="Pages\Sources\Css\StyleSheet_Profil.css" />

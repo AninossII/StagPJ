@@ -9,7 +9,7 @@ namespace StagPj
 {
     public partial class Register : System.Web.UI.Page
     {
-        private Utilisateur U;
+        private Utilisateur u;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,17 +18,22 @@ namespace StagPj
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            u = new Utilisateur();
+
             if (tpswrd.Text.Equals(tconpsswrd.Text) == false)
             {
                 Response.Write("mode passe no valid");
                 return;
             }
-      
-            U =new Utilisateur();
-            char gertCh =Convert.ToChar( Genre.SelectedValue.Substring(0,1));
-                Response.Write(U.SingUp(temal.Text, tpswrd.Text, tnom.Text, tprenom.Text, Convert.ToDateTime(t_date_nes.Text), gertCh));
-            
 
+            u.Email = temal.Text;
+            u.Password = tpswrd.Text;
+            u.Nom = tnom.Text;
+            u.Prenom = tprenom.Text;
+            u.Datenes = Convert.ToDateTime(t_date_nes.Text);
+            u.Genre = Convert.ToChar(Genre.SelectedValue.Substring(0, 1));
+            
+            u.SingUp();
         }
     }
 }

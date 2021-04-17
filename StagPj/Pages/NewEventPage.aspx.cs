@@ -19,7 +19,7 @@ namespace StagPj
         private In inMoney;
         private Out outMoney;
 
-        private DataTable dataTable;
+        private static DataTable _dataTable;
         private static bool _bMod = true;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -51,24 +51,36 @@ namespace StagPj
 
             if (_bMod)
             {
-                dataTable = new DataTable();
-                dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
+                _dataTable = new DataTable();
+                _dataTable = con.showParamDataTable("dbo.Get_Comptes_from_ID_Utili");
 
-                dlCompts.DataSource = dataTable;
+                dlCompts.DataSource = _dataTable;
                 dlCompts.DataBind();
                 dlCompts.DataTextField = "Nom";
                 dlCompts.DataValueField = "ID";
                 dlCompts.DataBind();
-                _bMod = false;
+                //_bMod = false;
             }
 
             if (a.ID != null && tbPrix.Text == String.Empty)
             {
-                dataTable = new DataTable();
-                dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + a.ID + "'");
-                
-                tbPrix.Text = dataTable.Rows[0][3].ToString().Trim();
-                tbDes.Text = dataTable.Rows[0][2].ToString().Trim();
+                _dataTable = new DataTable();
+                _dataTable = con.showDataTable("select * from dbo.action" + " where ID = '" + a.ID + "'");
+
+                string prix;
+                prix = _dataTable.Rows[0][3].ToString().Trim();
+
+                if (prix.Contains("-"))
+                {
+                    tbPrix.Text = (-float.Parse(prix)).ToString();
+                }
+                else
+                {
+                    tbPrix.Text = prix;
+                    cbAjout.Checked = true;
+                }
+
+                tbDes.Text = _dataTable.Rows[0][2].ToString().Trim();
                 dlCompts.Items.FindByValue(c.ID).Selected = true;
                 btnEvent.Text = "Modifier Event";
                 _bMod = false;
@@ -106,23 +118,34 @@ namespace StagPj
                     }
                     else
                     {
-                        a.Montant = float.Parse("-" + a.Montant);
-                        a.Ajouter();
-                        outMoney.Withdraw();
+                        {
+                            a.Montant = float.Parse("-" + a.Montant);
+                            a.Ajouter();
+                            outMoney.Withdraw();
+                        }
                     }
                     Response.Redirect("HomePage.aspx");
                 }
                 else
                 {
-                    a.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
-                    a.Modifier();
+                    a.Time = DateTime.Parse(_dataTable.Rows[0][1].ToString());
+
+                    if (cbAjout.Checked)
+                    {
+                        a.Modifier();
+                    }
+                    else
+                    {
+                        a.Montant = float.Parse("-" + a.Montant);
+                        a.Modifier();
+                    }
 
                     Response.Redirect("HomePage.aspx");
                 }
             }
             else
             {
-                a.Time = DateTime.Parse(dataTable.Rows[0][1].ToString());
+                a.Time = DateTime.Parse(_dataTable.Rows[0][1].ToString());
                 
                 a.Suppretion();
                 a.Ajouter();
