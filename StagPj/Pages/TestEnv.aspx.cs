@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,9 @@ namespace StagPj.Pages
         private Connexion con;
         private SqlCommand cmd;
         private Utilisateur u;
+
+        private DataList dl;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             u = new Utilisateur();
@@ -21,8 +25,9 @@ namespace StagPj.Pages
             u.Email = Request.Cookies["logIn"]["Email"];
             u.Password = Request.Cookies["logIn"]["Password"];
             u.LogIn();
-            Response.Write(u.Email);
-            
+
+
         }
+
     }
 }
