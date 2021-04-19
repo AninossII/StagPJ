@@ -76,6 +76,15 @@ namespace StagPj {
         protected global::System.Web.UI.WebControls.CheckBox cbAjout;
         
         /// <summary>
+        /// tags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tags;
+        
+        /// <summary>
         /// btnEvent control.
         /// </summary>
         /// <remarks>

@@ -73,14 +73,14 @@ namespace StagPj.Pages
 
         protected void btnWid_Click(object sender, EventArgs e)
         {
-            Response.Redirect("NewEventPage.aspx");
+            Response.Redirect("NewEvent.aspx");
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             a = new Action();
             a.EventType = "+";
-            Response.Redirect("NewEventPage.aspx");
+            Response.Redirect("NewEvent.aspx");
         }
 
         protected void btnhomePage_Click(object sender, EventArgs e)

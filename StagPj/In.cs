@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web;
 
 namespace StagPj
 {
     public class In : Action
     {
-        private Connexion con;
+        private string cvalue;
+        
         private Source source;
+
+        public string cValue
+        {
+            get { return cvalue; }
+            set { cvalue = value; }
+        }
 
         public In()
         {
@@ -20,6 +28,10 @@ namespace StagPj
         public void Add()
         {
             Add_Money(Montant);
+
+            // -- Add Category
+
+            con.showDataTable("insert into dbo.Categorie(Designation,A_id) values('" + cvalue + "','" + ID + "')");
         }
 
         ////////////// ----- InMoney ----- //////////////

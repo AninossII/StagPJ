@@ -31,9 +31,13 @@
 
             <asp:CheckBox ID="cbAjout" TextAlign="Left" runat="server" Text="Ajout: " CssClass="chkListStyle"  OnCheckedChanged="CheckBox1_CheckedChanged" />
         </p>
+                
         <p>
+            <input id="tags" runat="server" type="text" data-role="tagsinput" list="catyList"/>
+        </p>
 
-        <asp:Button ID="btnEvent" runat="server" Text="Create Event" OnClick="Button1_Click" />
+        <p>
+            <asp:Button ID="btnEvent" runat="server" Text="Create Event" OnClick="Button1_Click" />
         </p>
     </form>
 </body>
