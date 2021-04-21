@@ -15,6 +15,12 @@
           <AssociatedConnUserName />
           <FullPath>Ceation table.sql</FullPath>
         </FileNode>
+        <FileNode Name="For Home page.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>For Home page.sql</FullPath>
+        </FileNode>
         <FileNode Name="Proc Action.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />

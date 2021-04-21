@@ -49,4 +49,36 @@ exec dbo.U_Comptes '16FC574C-CF16-4FF4-A4BE-4B9A0E8986AB','Cii',50,'D7232F9B-22E
 print trim(@msg)
 
 
+drop trigger T_compte_UPdate_Montant
+
+------------------------------------------------------------------------
+create or alter trigger T_compte_UPdate_Montant
+on [Action]
+after insert ,update
+as
+BEGIN 
+	declare C cursor for select C_id,Prix from inserted  
+	open C 
+	declare @id uniqueidentifier,@prix float
+	FETCH NEXT FROM C INTO @id,@prix;
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			if ((select C_montant from Comptes where ID = @id)-@prix)<0
+				BEGIN 
+				print  'you don`t have nomey enough !!!' ;
+				close C
+				deallocate C
+				rollback
+				END 
+			/*update comptes 
+			set C_Montant += @prix where ID = @id*/ 
+			FETCH NEXT FROM C; 
+		END
+	close C
+deallocate C
+END 
+-------------------------------------------------------------
+ declare @msg char(256)
+ exec dbo.I_Action '2021-04-13 13:39:01','sleep',-1000,'973809C7-DD33-4E8C-B0CB-3450449CF75E',@msg out
+ print @msg
 

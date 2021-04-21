@@ -24,8 +24,6 @@ END TRY
 BEGIN CATCH
     SET @responseMessage= concat(ERROR_NUMBER(),'##',ERROR_MESSAGE())
 END CATCH
-
-
 ----------------------
 --declare @message char(256)
 
@@ -83,3 +81,11 @@ END CATCH
 
 --print @message
 -------------------------
+create or alter proc Get_A_id_By_C_id 
+@ID_C uniqueidentifier,
+@ID_A uniqueidentifier out
+as
+set @ID_A = (select top(1) ID from [Action] where C_id = @ID_C order by Time Desc)
+declare @id uniqueidentifier
+exec Get_A_id_By_C_id '973809C7-DD33-4E8C-B0CB-3450449CF75E',@id out
+select @id
